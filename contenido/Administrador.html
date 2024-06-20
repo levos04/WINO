@@ -1,85 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <title>WINO Register</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-gray-100">
-        <div class="mx-10 my-10 place-content-center bg-purple-600 rounded-lg p-10">
-            <form class="space-y-12">
-                <div class="border-b border-gray-950 pb-12">
-                    <h1 class="text-2xl font-semibold leading-4 text-white">Crea tu cuenta como administrador</h1>
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <fieldset>
-                            <legend class="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
-                            <p class="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
-                            <div class="mt-6 space-y-6">
-                                <div class="flex items-center gap-x-3">
-                                    <input id="push-everything" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                                    <label for="push-everything" class="block text-sm font-medium leading-6 text-gray-900">Everything</label>
-                                </div>
-                                <div class="flex items-center gap-x-3">
-                                    <input id="push-email" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                                    <label for="push-email" class="block text-sm font-medium leading-6 text-gray-900">Same as email</label>
-                                </div>
-                                <div class="flex items-center gap-x-3">
-                                    <input id="push-nothing" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                                    <label for="push-nothing" class="block text-sm font-medium leading-6 text-gray-900">No push notifications</label>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="first-name" class="block text-sm font-medium leading-2 text-white">Nombre(s)</label>
-                            <div class="mt-2">
-                                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="last-name" class="block text-sm font-medium leading-2 text-white">Apellido(s)</label>
-                            <div class="mt-2">
-                                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="birthday" class="block text-sm font-medium leading-2 text-white">Fecha de nacimiento</label>
-                            <div class="mt-2">
-                                <input id="birthday" name="birthday" type="date" autocomplete="bday" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
-                        </div>          
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="email" class="block text-sm font-medium leading-2 text-white">Contacto</label>
-                            <div class="mt-2">
-                                <input id="email" name="email" type="email" autocomplete="email" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-b border-gray-950 pb-12">
-                    <h2 class="col-span-6 font-semibold text-white">Datos de la Cuenta</h2>      
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
-                            <label for="username" class="block text-sm font-medium leading-2 text-white">Username</label>
-                            <div class="mt-2">
-                                <input id="username" name="username" type="username" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
-                        </div>
-                        <div class="sm:col-span-3">
-                            <label for="email" class="block text-sm font-medium leading-2 text-white">Contraseña</label>
-                            <div class="mt-2">
-                                <input id="password" name="password" type="password" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
-                        </div>
-                    </div>                    
-                    <div class="mt-6 flex justify-center items-center justify-end gap-x-6">
-                        <button type="submit" class="rounded-full bg-gray-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900 mt-5">Continuar</button>
-                    </div>
-                    <p class="text-white font-semibold col-span-3 flex justify-center mt-5">Al crear una cuenta en Work Is Never Over acepta los terminos y condiciones de la página.</p>
-                </div>
-                <div class="flex justify-center">
-                    <p class="text-white font-semibold col-span-3 leading-6">¿Ya tiene una cuenta? -> </p> 
-                    <a class="font-semibold text-blue-400" href="InicioSesion.html">Iniciar sesión</a>
-                </div>
-            </form>
+<head>
+    <title>WINO Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <div class="mx-10 my-10 flex flex-col bg-purple-600 rounded-lg p-10">
+        <form class="flex flex-col flex-grow space-y-12">
+            <h1 class="text-2xl font-semibold leading-4 text-white text-center">¿Ya registró su gimnasio con nosotros?</h1>
+            <div class="flex-grow"></div> <!-- Espacio flexible para empujar los botones hacia abajo -->
+            <div class="flex justify-center space-x-6 mt-6">
+                <button type="submit" class="rounded-full bg-gray-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900">¡Sí!, ya estamos registrados</button>
+                <button type="submit" class="rounded-full bg-gray-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900">Aún no estamos registrados</button>
+            </div>
+            <div class="flex justify-center space-x-2">
+                <p class="text-white font-semibold col-span-3 leading-6">¿Ya tiene una cuenta?</p> 
+                <a class="font-semibold text-blue-400" href="InicioSesion.html">Iniciar sesión</a>
+            </div>
+        </form>
+    </div>
+
+    <footer class="flex-grow bg-gray-950 py-10 mt-10">
+        <div class="container mx-auto flex justify-center space-x-10">
+            <a class="font-semibold text-blue-400" href="#">Condiciones de uso</a>
+            <a class="font-semibold text-blue-400" href="#">Privacidad</a>
+            <a class="font-semibold text-blue-400" href="#">Ayuda</a>
         </div>
-    </body>
+        <div class="flex justify-center mt-5">
+            <p class="text-white font-semibold col-span-3 leading-6">© 2024, WINO.com, Inc. or its affiliates</p>
+        </div>
+    </footer>
+</body>
 </html>
