@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training</title>
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <body class="bg-customColor">
+        <!-- Barra de navegación lateral -->
+        <nav class="bg-gray-800 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 text-white">
+            <!-- Logo -->
+            <a href="#home" class="mb-4">
+                <img onclick="window.location.href='index.html'" src="../src/Logotipo marca de productos sustentables ilustrado verde (1).png" alt="Logo" class="h-12 w-15">
+            </a>
+        
+            <!-- Enlaces de navegación -->
+            <div class="flex flex-col space-y-4">
+                <a onclick="window.location.href='user.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+                <a onclick="window.location.href='training.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-dumbbell"></i>
+                </a>
+                <div class="relative">
+                    <button class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                        <i class="fa-solid fa-apple-whole"></i>
+                    </button>
+                </div>
+                <a href="#about" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-ruler"></i>
+                </a>
+                <a href="#contact" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fas fa-address-book w-6 h-6"></i>
+                </a>
+            </div>
+        
+            <!-- Botones adicionales a la izquierda del perfil -->
+            <div class="flex flex-col items-center">
+                <!-- Botón 1 con icono -->
+                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
+                </button>
+                <!-- Botón 2 con icono -->
+                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
+                </button>
+                <!-- Perfil con foto -->
+                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
+                </button>
+            </div>
+        </nav>
+
+         <!-- Sección de Bienvenida -->
+         <section id="home" class="bg-cover bg-center h-64 md:h-96" style="background-image: url('../src/ejercicioslol.webp');">
+            <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+                <div class="text-center p-4 md:p-8">
+                    <h1 class="text-white text-3xl md:text-4xl font-bold mb-2 md:mb-4 font-mono">Bienvenido a tus ejercicios</h1>
+                    <p class="text-white text-md md:text-lg font-mono">Tu elijes como comenzar</p>
+                </div>
+            </div>
+        </section>
+        
+
+<!-- Sección de Ejercicios -->
+<section id="exercises" class="py-12">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-mono text-gray-300 mb-8">Ejercicios Pendientes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Ejercicio 1 -->
+            <a href="#" class="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="../src/Cardio.jpg" alt="Ejercicio 1" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Bicicleta estatica</h3>
+                    <p class="text-gray-700">30min consecutivos faltantes</p>
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                    ¡Sigue pedaleando!
+                </div>
+            </a>
+            <!-- Ejercicio 2 -->
+            <a href="#" class="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="/src/Fuerza.jpeg" alt="Ejercicio 2" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Sentadilla con peso</h3>
+                    <p class="text-gray-700">3 repeticiones / 10 sentadillas</p>
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                    ¡Mantén la fuerza!
+                </div>
+            </a>
+            <!-- Ejercicio 3 -->
+            <a href="#" class="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="/src/Saludo al sol.jpg" alt="Ejercicio 3" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Saludo al sol</h3>
+                    <p class="text-gray-700">Realizar toda la rutina</p>
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                    ¡Namasté!
+                </div>
+            </a>
+            <!-- Ejercicio 4 -->
+            <a href="#" class="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="/src/Press.jpg" alt="Ejercicio 4" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Press de banca</h3>
+                    <p class="text-gray-700">3 repeticiones / 5 levantamientos</p>
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                    ¡Empuja fuerte!
+                </div>
+            </a>
+            <!-- Ejercicio 5 -->
+            <a href="#" class="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="/src/Cardio2.jpeg" alt="Ejercicio 5" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Salto de cuerda</h3>
+                    <p class="text-gray-700">Saltar la cuerda durante 30min</p>
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                    ¡Sigue saltando!
+                </div>
+            </a>
+            <!-- Ejercicio 6 -->
+            <a href="#" class="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="/src/Yoga.jpg" alt="Ejercicio 3" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-2">Uttanasana</h3>
+                    <p class="text-gray-700">Realizar la postura durante al final de cada rutina</p>
+                </div>
+                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                    ¡Relájate y estira!
+                </div>
+            </a>
+        </div>
+    </div>
+</section> 
+</body>
+</html>
