@@ -6,33 +6,37 @@
     </head>
     <body class="bg-gray-100">
         <div class="mx-10 my-10 place-content-center bg-purple-600 rounded-lg p-10">
-            <form class="space-y-12">
+            <form class="space-y-12" action="/agregar_cliente" method="POST">
                 <div class="border-b border-gray-950 pb-12">
                     <h1 class="text-2xl font-semibold leading-4 text-white">Crea tu cuenta</h1>
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <h2 class="col-span-6 font-semibold text-white">Datos Personales</h2>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="first-name" class="block text-sm font-medium leading-2 text-white">Nombre(s)</label>
+                            <label for="Nombre" class="block text-sm font-medium leading-2 text-white">Nombre(s)</label>
                             <div class="mt-2">
-                                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="Nombre" id="Nombre" autocomplete="given-name" 
+                                class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="last-name" class="block text-sm font-medium leading-2 text-white">Apellido(s)</label>
+                            <label for="Apellido" class="block text-sm font-medium leading-2 text-white">Apellido(s)</label>
                             <div class="mt-2">
-                                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="Apellido" id="Apellido" autocomplete="family-name" 
+                                class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="birthday" class="block text-sm font-medium leading-2 text-white">Fecha de nacimiento</label>
+                            <label for="FechaNacimiento" class="block text-sm font-medium leading-2 text-white">Fecha de nacimiento</label>
                             <div class="mt-2">
-                                <input id="birthday" name="birthday" type="date" autocomplete="bday" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input id="FechaNacimiento" name="FechaNacimiento" type="date" autocomplete="bday" 
+                                class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>          
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="email" class="block text-sm font-medium leading-2 text-white">Contacto</label>
+                            <label for="Contacto" class="block text-sm font-medium leading-2 text-white">Contacto</label>
                             <div class="mt-2">
-                                <input id="email" name="email" type="email" autocomplete="email" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input id="Contacto" name="Contacto" type="email" autocomplete="email" 
+                                class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>
@@ -41,20 +45,23 @@
                     <h2 class="col-span-6 font-semibold text-white">Datos de la Cuenta</h2>      
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
-                            <label for="username" class="block text-sm font-medium leading-2 text-white">Username</label>
+                            <label for="NombreUsuario" class="block text-sm font-medium leading-2 text-white">Username</label>
                             <div class="mt-2">
-                                <input id="username" name="username" type="username" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input id="NombreUsuario" name="NombreUsuario" type="username" 
+                                class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                         <div class="sm:col-span-3">
-                            <label for="email" class="block text-sm font-medium leading-2 text-white">Contraseña</label>
+                            <label for="password" class="block text-sm font-medium leading-2 text-white">Contraseña</label>
                             <div class="mt-2">
-                                <input id="password" name="password" type="password" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input id="password" name="password" type="password" 
+                                class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>                    
                     <div class="mt-6 flex justify-center items-center justify-end gap-x-6">
-                        <button type="submit" class="rounded-full bg-gray-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900 mt-5">Continuar</button>
+                        <button type="submit" value="Agregar Cliente"
+                        class="rounded-full bg-gray-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900 mt-5">Continuar</button>
                     </div>
                     <p class="text-white font-semibold col-span-3 flex justify-center mt-5">Al crear una cuenta en Work Is Never Over acepta los terminos y condiciones de la página.</p>
                 </div>
@@ -74,5 +81,6 @@
                 <p class="text-white font-semibold col-span-3 leading-6">© 2024, WINO.com, Inc. or its affiliates</p>
             </div>
         </footer>
+        <script src="/js/AgregarUsuario.js"></script>
     </body>
 </html>
