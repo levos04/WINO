@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+       <!-- Barra de navegación lateral -->
+       <nav class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 text-white">
+        <!-- Logo -->
+        <a href="#home" class="mb-4">
+            <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15">
+        </a>
+    
+        <!-- Enlaces de navegación -->
+        <div class="flex flex-col space-y-4">
+            <a onclick="window.location.href='user.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a onclick="window.location.href='coachs_user.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-users"></i>
+            </a>
+            <div class="relative">
+                <button class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-apple-whole"></i>
+                </button>
+            </div>
+            <a href="#about" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-ruler"></i>
+            </a>
+            <a href="#contact" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fas fa-address-book w-6 h-6"></i>
+            </a>
+        </div>
+    
+        <!-- Botones adicionales a la izquierda del perfil -->
+        <div class="flex flex-col items-center">
+            <!-- Botón 1 con icono -->
+            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
+            </button>
+            <!-- Botón 2 con icono -->
+            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
+            </button>
+            <!-- Perfil con foto -->
+            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
+            </button>
+        </div>
+    </nav>
+
+        <!-- Contenedor de la fecha y hora -->
+        <div class="mt-0 mb-4 flex justify-center">
+            <div class="text-white bg-gray-800 rounded-lg p-4">
+                <p class="text-sm">Fecha y hora: <span id="datetime"></span></p>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto">
+            <!-- Publicación 1 -->
+            <div class="bg-Demicolor2 shadow-lg rounded-lg overflow-hidden mb-4">
+                <!-- Imagen de la publicación -->
+                <img src="../src/EjemploA.jpg" alt="Publicación 1" class="w-full object-contain">
+                
+                <!-- Contenido de la publicación -->
+                <div class="p-4">
+                    <!-- Información del usuario y texto -->
+                    <div class="flex items-center mb-2">
+                        <img src="../src/angel.jpg" alt="Avatar" class="h-10 w-10 rounded-full mr-2">
+                        <div>
+                            <p class="font-semibold text-gray-200">Dios.vive</p>
+                            <p class="text-xs text-gray-200">Hace 1 hora</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-200 mb-4">Yo soy grande pero dios es mas</p>
+                
+                    <!-- Botones de interacción -->
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-4">
+                            <button class="flex items-center text-gray-200 hover:text-blue-500">
+                                <svg class="w-6 h-6 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18l-7-7h4V3h6v8h4l-7 7z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Me gusta</span>
+                            </button>
+                            <button class="flex items-center text-gray-200 hover:text-red-500">
+                                <svg class="w-6 h-6 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M13 2c0-.553-.448-1-1-1H8c-.552 0-1 .447-1 1v1H3c-.553 0-1 .448-1 1v12c0 .552.447 1 1 1h14c.553 0 1-.448 1-1V4c.553 0 1-.448 1-1h-4V2zM7 16H5V8h2v8zm6 0h-2V8h2v8zm2-12H3V5h12v-.001z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Comentar</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="flex items-center text-gray-200 hover:text-gray-900">
+                                <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                <span>Ver más</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Publicación 2 -->
+            <div class="bg-Demicolor2 shadow-lg rounded-lg overflow-hidden mb-4">
+                <img src="/src/LEVIFIT.jpg" alt="Publicación 2" class="w-full object-contain">
+                <div class="p-4">
+                    <div class="flex items-center mb-2">
+                        <img src="/src/levi.jpg" alt="Avatar" class="h-10 w-10 rounded-full mr-2">
+                        <div>
+                            <p class="font-semibold text-gray-200">Leviatan</p>
+                            <p class="text-xs text-gray-200">Hace 2 horas</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-200 mb-4">"Es como si nos lo dijera a nostros"</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-4">
+                            <button class="flex items-center text-gray-200 hover:text-blue-500">
+                                <svg class="w-6 h-6 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18l-7-7h4V3h6v8h4l-7 7z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Me gusta</span>
+                            </button>
+                            <button class="flex items-center text-gray-200 hover:text-red-500">
+                                <svg class="w-6 h-6 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M13 2c0-.553-.448-1-1-1H8c-.552 0-1 .447-1 1v1H3c-.553 0-1 .448-1 1v12c0 .552.447 1 1 1h14c.553 0 1-.448 1-1V4c.553 0 1-.448 1-1h-4V2zM7 16H5V8h2v8zm6 0h-2V8h2v8zm2-12H3V5h12v-.001z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Comentar</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="flex items-center text-gray-200 hover:text-gray-900">
+                                <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                <span>Ver más</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Función para obtener la fecha y hora actual
+            function updateDateTime() {
+                const now = new Date();
+                const datetimeSpan = document.getElementById('datetime');
+                datetimeSpan.textContent = now.toLocaleString();
+            }
+            // Llamar a las funciones necesarias al cargar la página
+            window.onload = function() {
+                updateDateTime(); // Actualizar fecha y hora
+                initMap(); // Inicializar el mapa
+                setInterval(updateDateTime, 60000); // Actualizar cada minuto la fecha y hora
+            };
+        </script>
+</body>
+</html>
