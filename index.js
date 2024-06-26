@@ -38,31 +38,43 @@ app.get('/InicioMiembro', (req, res) => {
 
 // Ruta para manejar el formulario
 app.post('/validarMiembro', (req, res) => {
-    const datos = req.body;
+  const datos = req.body;
 
-    let nombre = datos.Nombre;
-    let apellido = datos.Apellido;
-    let fn = datos.FechaNacimiento;
-    let contacto = datos.Contacto;
-    let nu = datos.NombreUsuario;
-    let pass = datos.password;
+  let nombre = datos.Nombre;
+  let apellido = datos.Apellido;
+  let fn = datos.FechaNacimiento;
+  let contacto = datos.Contacto;
+  let nu = datos.NombreUsuario;
+  let pass = datos.password;
 
-    let registrar = "CALL agregar_cliente(?, ?, ?, ?, ?, ?)";
+  // Llamada al procedimiento almacenado
+  let registrar = "CALL agregar_cliente(?, ?, ?, ?, ?, ?)";
 
-    conexion.query(registrar, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
-        if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
-            return res.status(500).send('Ocurrió un error al registrar el miembro.');
-        }
-        console.log('Resultado del procedimiento almacenado:', results);
-        res.send('Cliente agregado correctamente.');
-      });
+  conexion.query(registrar, [nombre, apellido, fn, contacto, nu, pass], (error, results, fields) => {
+      if (error) {
+          console.error('Error ejecutando el procedimiento almacenado:', error);
+          if (error.code === 'ER_SIGNAL_EXCEPTION') {
+              return res.redirect('/registroFallido.html'); // Redirigir en caso de error específico
+          } else {
+              return res.redirect('/registroFallido.html'); // Redirigir en caso de otro error
+          }
+      }
 
-    // Aquí puedes agregar lógica para procesar los datos del formulario
-    res.redirect('/'); // Redirigir a la página principal o a otra página después de procesar los datos
+      // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
+      if (results && results.length > 0 && results[0][0] && results[0][0].mensaje) {
+          let mensaje = results[0][0].mensaje;
+          if (mensaje.includes('Error')) {
+              return res.redirect('/registroFallido.html'); // Redirigir si hay un mensaje de error
+          } else {
+              return res.redirect('/registroExitoso.html'); // Redirigir si el cliente se agregó correctamente
+          }
+      } else {
+          console.error('Error: No se recibió un mensaje válido del procedimiento almacenado.');
+          return res.redirect('/registroFallido.html'); // Redirigir si no se recibió un mensaje válido
+      }
+  });
 });
 
 app.listen(5500, () => {
     console.log('Servidor iniciado en http://localhost:5500');
 });
-
