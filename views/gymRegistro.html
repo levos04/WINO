@@ -6,25 +6,25 @@
     </head>
     <body class="bg-gray-100">
         <div class="mx-10 my-10 place-content-center bg-purple-600 rounded-lg p-10">
-            <form class="space-y-12">
+            <form class="space-y-12" action="/validarGym" method="post">
                 <div class="border-b border-gray-950 pb-12">
                     <h1 class="text-2xl font-semibold leading-4 text-white">Registra tu gimnasio con nosotros!</h1>
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <h2 class="col-span-6 font-semibold text-white">Datos del gimnasio</h2>
 
                         <div class="col-span-6 sm:col-span-2">
-                            <label for="country" class="block text-sm font-medium leading-2 text-white">País</label>
+                            <label for="Pais" class="block text-sm font-medium leading-2 text-white">País</label>
                             <div class="mt-2">
-                                <select id="country" name="country" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <select id="Pais" name="Pais" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <option value="Mexico">Mexico</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-2">
-                            <label for="region" class="block text-sm font-medium leading-2 text-white">Estado / Provincia</label>
+                            <label for="Estado" class="block text-sm font-medium leading-2 text-white">Estado / Provincia</label>
                             <div class="mt-2">
-                                <select id="region" name="region" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <select id="Estado" name="Estado" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <option value="Aguascalientes">Aguascalientes</option>
                                     <option value="Baja California">Baja Californi</option>
                                     <option value="Baja California Sur">Baja California Sur</option>
@@ -62,30 +62,37 @@
                         </div>
 
                         <div class="col-span-6 sm:col-span-2">
-                            <label for="city" class="block text-sm font-medium leading-2 text-white">Ciudad</label>
+                            <label for="Ciudad" class="block text-sm font-medium leading-2 text-white">Ciudad</label>
                             <div class="mt-2">
-                                <input type="text" name="city" id="city" autocomplete="address-level2" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="Ciudad" id="Ciudad" autocomplete="address-level2" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                   
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="street-address" class="block text-sm font-medium leading-2 text-white">Dirección</label>
+                            <label for="Direccion" class="block text-sm font-medium leading-2 text-white">Dirección</label>
                             <div class="mt-2">
-                                <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="Direccion" id="Direccion" autocomplete="street-address" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                   
                         <div class="col-span-6 sm:col-span-2">
-                            <label for="postal-code" class="block text-sm font-medium leading-2 text-white">ZIP / Código Postal</label>
+                            <label for="CodigoPostal" class="block text-sm font-medium leading-2 text-white">ZIP / Código Postal</label>
                             <div class="mt-2">
-                                <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="CodigoPostal" id="CodigoPostal" autocomplete="postal-code" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
-                        <div class="col-span-6 sm:col-span-6">
+                        <div class="col-span-6 sm:col-span-4">
                             <label for="RFC" class="block text-sm font-medium leading-2 text-white">RFC</label>
                             <div class="mt-2">
                                 <input type="text" name="RFC" id="RFC" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-2">
+                            <label for="Nombre" class="block text-sm font-medium leading-2 text-white">Nombre del gimnasio</label>
+                            <div class="mt-2">
+                                <input type="text" name="Nombre" id="Nombre" class="w-full rounded-full px-3 py-1.5 text-gray-900 ring-2 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>
@@ -96,7 +103,7 @@
                 </div>
                 <div class="flex justify-center space-x-2">
                     <p class="text-white font-semibold col-span-3 leading-6">¿Ya tiene una cuenta?</p> 
-                    <a class="font-semibold text-blue-400" href="InicioSesion.html">Iniciar sesión</a>
+                    <a class="font-semibold text-blue-400" href="adminRegistro.html">Iniciar sesión</a>
                 </div>
             </form>
         </div>
