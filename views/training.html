@@ -11,50 +11,52 @@
 </head>
     <body class="bg-Demicolor">
         <!-- Barra de navegación lateral -->
-        <nav class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 text-white">
+    <nav class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 text-white">
             <!-- Logo -->
             <a href="#home" class="mb-4">
                 <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15">
             </a>
         
-            <!-- Enlaces de navegación -->
-            <div class="flex flex-col space-y-4">
-                <a onclick="window.location.href='user.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fa-solid fa-house"></i>
-                </a>
-                <a onclick="window.location.href='training.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fa-solid fa-dumbbell"></i>
-                </a>
-                <div class="relative">
-                    <button onclick="window.location.href='recetas.html'" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                        <i class="fa-solid fa-apple-whole"></i>
-                    </button>
-                </div>
-                <a href="#about" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fa-solid fa-ruler"></i>
-                </a>
-                <a href="#contact" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fas fa-address-book w-6 h-6"></i>
-                </a>
-            </div>
-        
-            <!-- Botones adicionales a la izquierda del perfil -->
-            <div class="flex flex-col items-center">
-                <!-- Botón 1 con icono -->
-                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
-                </button>
-                <!-- Botón 2 con icono -->
-                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
-                </button>
-                <!-- Perfil con foto -->
-                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
-                </button>
-            </div>
-        </nav>
+  <!-- Enlaces de navegación -->
+  <div class="flex flex-col space-y-4">
+    <a onclick="window.location.href='user.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    <a onclick="window.location.href='training.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+        <i class="fa-solid fa-dumbbell"></i>
+    </a>
+    <div class="relative">
+        <button onclick="window.location.href='recetas.html'" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+            <i class="fa-solid fa-apple-whole"></i>
+        </button>
+    </div>
+    <a href="/Maquetado 2 unidad/configuracion.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+        <i class="fa-solid fa-gear"></i> <!-- Cambiado a fa-gear para la tuerca -->
+    </a>        
+    <a href="/Maquetado 2 unidad/Chat/Chats.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+        <i class="fas fa-address-book w-6 h-6"></i>
+    </a>
+</div>
 
+<!-- Botones adicionales a la izquierda del perfil -->
+<div class="flex flex-col items-center">
+    <!-- Botón 1 con icono -->
+    <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+        <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
+    </button>
+    <!-- Botón 2 con icono -->
+    <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+        <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
+    </button>
+    <!-- Perfil con foto -->
+    <a href="/Maquetado 2 unidad/index.html">
+        <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+            <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
+        </button>
+    </a>
+    
+</div>
+</nav>
          <!-- Sección de Bienvenida -->
          <section id="home" class="bg-cover bg-center h-64 md:h-96" style="background-image: url('../src/ejercicioslol.webp');">
             <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
