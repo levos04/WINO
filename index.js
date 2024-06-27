@@ -186,6 +186,25 @@ app.post('/validarEntrenador', (req, res) => {
         });
     });
 
+    app.post('/loginMiembro', (req, res) => {
+        const datos = req.body;
+
+        let username = datos.username;
+        let password = datos.password;
+    
+        let query = 'SELECT * FROM clientes WHERE username = ? AND password = ?';
+
+        conexion.query(query, [username, password], (error, results) => {
+            if (results.length === 0) {
+                // Si no se encontraron coincidencias
+                return res.redirect('/miembroInicio.hmtl?error=datos_no_registrados');
+            }
+
+            // Si la ejecución fue exitosa
+            return res.redirect(`/user.html?usuario=${username}`);
+        });
+    });
+
 
 app.listen(5500, () => {
     console.log('Servidor iniciado en http://localhost:5500');
