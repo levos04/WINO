@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="barra-color"></div>
+        <img src="./img/logo.png" alt="Logo" class="logo">
+    </header>
+    <div class="contenedor-principal">
+        <nav class="barra-navegacion">
+            <ul>
+                <li><a href="/views/user.html">Inicio</a></li>
+                <li><a href="./index.html">Mi Cuenta</a></li>
+                <li><a href="./Chat/Chats.html">Contactanos Por Chat</a></li>
+                <li><a href="./servicios.html">Servicios</a></li>
+                <li><a href="./configuracion.html">Configuracion</a></li>
+                <li><a href="./permisos.html">Privacidad y Permisos</a></li>
+                <li><a href="terminos.html">Términos y Condiciones</a></li>
+                <!-- Añadir más opciones aquí -->
+            </ul>
+        </nav>
+        <main>
+            <header class="top-nav">
+                <nav>
+                    <ul>
+                        <li><a href="#general">General</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                        <li><a href="#notificaciones">Notificaciones</a></li>
+                        <li><a href="#idioma-region">Idioma y Región</a></li>
+                        <li><a href="#metodo-pago">Método de Pago</a></li>
+                        <li><a href="#datos-usuario">Datos de Usuario</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <section id="general" class="settings-section">
+                    <h2>General</h2>
+                        <form id="password-change-form">
+                            <div class="setting-item">
+                                <label for="old-password">Contraseña Antigua</label>
+                                <input type="password" id="old-password" required>
+                            </div>
+                            <div class="setting-item">
+                                <label for="new-password">Nueva Contraseña</label>
+                                <input type="password" id="new-password" required>
+                            </div>
+                            <div class="setting-item">
+                                <label for="confirm-password">Confirmar Nueva Contraseña</label>
+                                <input type="password" id="confirm-password" required>
+                            </div>
+                            <button type="submit">Cambiar Contraseña</button>
+                        </form>
+                    <label for="suggestions">Sugerencias</label>
+                    <textarea id="suggestions" placeholder="Tus sugerencias"></textarea>
+                    <!-- Añade aquí más configuraciones esenciales según sea necesario -->
+                </section>
+                <!-- Añadir otras secciones de configuración según los enlaces de la barra de navegación -->
+                <section id="privacidad" class="settings-section">
+                    <h2>Privacidad</h2>
+            <div class="setting-item">
+                <label for="perfil-visibility">¿Quién puede ver mi información de perfil?</label>
+                <select id="perfil-visibility">
+                    <option value="todos">Todos</option>
+                    <option value="amigos">Amigos</option>
+                    <option value="solo-yo">Solo yo</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="historial-visibility">¿Quién puede ver mi historial de entrenamiento?</label>
+                <select id="historial-visibility">
+                    <option value="todos">Todos</option>
+                    <option value="amigos">Amigos</option>
+                    <option value="solo-yo">Solo yo</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="mensajes-visibility">¿Quién puede mandarme mensajes?</label>
+                <select id="mensajes-visibility">
+                    <option value="todos">Todos</option>
+                    <option value="amigos">Amigos</option>
+                    <option value="nadie">Nadie</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="ultima-conexion-visibility">¿Quién puede ver mi última conexión?</label>
+                <select id="ultima-conexion-visibility">
+                    <option value="todos">Todos</option>
+                    <option value="amigos">Amigos</option>
+                    <option value="nadie">Nadie</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="notificaciones-otros">¿Puedo recibir notificaciones de otros usuarios?</label>
+                <select id="notificaciones-otros">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+                    <!-- Contenido de privacidad -->
+                </section>
+                <section id="notificaciones" class="settings-section">
+                    <h2>Notificaciones</h2>
+                    <div class="setting-item">
+                        <label for="email-notifications">Recibir notificaciones por correo electrónico sobre próximos eventos y clases</label>
+                        <select id="email-notifications">
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="sms-notifications">Recibir notificaciones por SMS sobre recordatorios de entrenamiento</label>
+                        <select id="sms-notifications">
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="app-notifications">Recibir notificaciones en la aplicación sobre mensajes de otros usuarios</label>
+                        <select id="app-notifications">
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </section>
+                <section id="idioma-region" class="settings-section">
+                    <h2>Idioma y Región</h2>
+                    <div class="setting-item">
+                        <label for="idioma">Idioma</label>
+                        <select id="idioma">
+                            <option value="es">Español</option>
+                            <option value="en">Inglés</option>
+                            <option value="fr">Francés</option>
+                            <option value="de">Alemán</option>
+                            <option value="it">Italiano</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="zona-horaria">Zona horaria</label>
+                        <select id="zona-horaria">
+                            <option value="CST">CST</option>
+                            <option value="EST">EST</option>
+                            <option value="PST">PST</option>
+                            <option value="GMT">GMT</option>
+                            <option value="CET">CET</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="ubicacion">Ubicación</label>
+                        <input type="text" id="ubicacion" placeholder="Ingrese su ubicación" readonly>
+                        <div id="map"></div>
+                    </div>
+                    <!-- Contenido de idioma y región -->
+                </section>
+                <section id="metodo-pago" class="settings-section">
+                    <h2>Método de Pago</h2>
+                        <form id="payment-form">
+                            <div class="setting-item">
+                                <label for="cardholder-name">Nombre del titular de la tarjeta</label>
+                                <input type="text" id="cardholder-name" required>
+                            </div>
+                            <div class="setting-item">
+                                <label for="card-number">Número de cuenta</label>
+                                <input type="text" id="card-number" maxlength="16" required>
+                            </div>
+                            <div class="setting-item">
+                                <label for="expiry-date">Fecha de vencimiento</label>
+                                <input type="month" id="expiry-date" required>
+                            </div>
+                            <div class="setting-item">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" maxlength="3" required>
+                            </div>
+                            <div class="setting-buttons">
+                                <button type="submit">Agregar</button>
+                                <button type="button" id="delete-button">Eliminar</button>
+                            </div>
+                        </form>
+                        <h3>Tarjetas Guardadas</h3>
+                        <ul id="saved-cards-list"></ul>
+                    
+                    <!-- Contenido de método de pago -->
+                </section>
+                <section id="datos-usuario" class="settings-section">
+                    <h2>Datos de Usuario</h2>
+                    <div id="datos-guardados"></div>
+                    <form id="datos-form">
+                        <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+                        <input type="text" id="fecha-nacimiento" name="fecha-nacimiento" readonly>
+                        <button type="button" class="calendario-btn" data-input="fecha-nacimiento">Calendario</button>
+                        <button type="button" class="guardar-btn" data-input="fecha-nacimiento">Guardar</button><br><br>
+            
+                        <label>Género:</label>
+                        <input type="radio" id="genero-masculino" name="genero" value="masculino">
+                        <label for="genero-masculino">Masculino</label>
+                        <input type="radio" id="genero-femenino" name="genero" value="femenino">
+                        <label for="genero-femenino">Femenino</label>
+                        <button type="button" class="guardar-btn" data-input="genero">Guardar</button><br><br>
+            
+                        <label for="telefono">Número de teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono">
+                        <button type="button" class="guardar-btn" data-input="telefono">Guardar</button><br><br>
+            
+                        <h3>Información de contacto de emergencia:</h3>
+                        <label for="nombre-contacto">Nombre del contacto de emergencia:</label>
+                        <input type="text" id="nombre-contacto" name="nombre-contacto">
+                        <button type="button" class="guardar-btn" data-input="nombre-contacto">Guardar</button><br><br>
+            
+                        <label for="afecciones-medicas">Afecciones médicas preexistentes:</label>
+                        <textarea id="afecciones-medicas" name="afecciones-medicas"></textarea>
+                        <button type="button" class="guardar-btn" data-input="afecciones-medicas">Guardar</button><br><br>
+            
+                        <label for="lesiones-previas">Lesiones previas:</label>
+                        <textarea id="lesiones-previas" name="lesiones-previas"></textarea>
+                        <button type="button" class="guardar-btn" data-input="lesiones-previas">Guardar</button><br><br>
+            
+                        <label for="restricciones-dieteticas">Restricciones dietéticas o médicas:</label>
+                        <textarea id="restricciones-dieteticas" name="restricciones-dieteticas"></textarea>
+                        <button type="button" class="guardar-btn" data-input="restricciones-dieteticas">Guardar</button><br><br>
+            
+                        <label for="alergias">Alergias:</label>
+                        <textarea id="alergias" name="alergias"></textarea>
+                        <button type="button" class="guardar-btn" data-input="alergias">Guardar</button><br><br>
+            
+                        <label for="peso-actual">Peso actual (kg):</label>
+                        <input type="number" id="peso-actual" name="peso-actual" step="0.1">
+                        <button type="button" class="guardar-btn" data-input="peso-actual">Guardar</button><br><br>
+            
+                        <label for="altura">Altura (cm):</label>
+                        <input type="number" id="altura" name="altura" step="0.1">
+                        <button type="button" class="guardar-btn" data-input="altura">Guardar</button><br><br>
+            
+                        <label for="mediciones-especificas">Mediciones específicas:</label>
+                        <textarea id="mediciones-especificas" name="mediciones-especificas"></textarea>
+                        <button type="button" class="guardar-btn" data-input="mediciones-especificas">Guardar</button><br><br>
+            
+                        <label for="objetivos">Objetivos de pérdida de peso o ganancia muscular:</label>
+                        <textarea id="objetivos" name="objetivos"></textarea>
+                        <button type="button" class="guardar-btn" data-input="objetivos">Guardar</button><br><br>
+            
+                        <label for="detalles-lesiones">Detalles sobre lesiones anteriores:</label>
+                        <textarea id="detalles-lesiones" name="detalles-lesiones"></textarea>
+                        <button type="button" class="guardar-btn" data-input="detalles-lesiones">Guardar</button><br><br>
+            
+                        <label for="fechas-cirugias">Fechas de cirugías relevantes:</label>
+                        <input type="text" id="fechas-cirugias" name="fechas-cirugias" readonly>
+                        <button type="button" class="calendario-btn" data-input="fechas-cirugias">Calendario</button>
+                        <button type="button" class="guardar-btn" data-input="fechas-cirugias">Guardar</button><br><br>
+            
+                        <button type="button" id="guardar-todo-btn">Guardar Todo</button>
+                    </form>
+                    <!-- Contenido de datos de usuario -->
+                </section>
+            </main>
+            <!-- Contenido principal -->
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
