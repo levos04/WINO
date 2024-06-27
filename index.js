@@ -40,6 +40,10 @@ app.get('/entrenadorRegistro', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'entrenadorRegistro.html'));
 });
 
+app.get('/entrenadorRegistro', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'gymRegistro.html'));
+});
+
 // Ruta para manejar el formulario
 app.post('/validarMiembro', (req, res) => {
   const datos = req.body;
@@ -119,7 +123,7 @@ app.post('/validarEntrenador', (req, res) => {
 
   app.post('/validarGym', (req, res) => {
     const datos = req.body;
-
+  
     let pais = datos.Pais;
     let estado = datos.Estado;
     let ciudad = datos.Ciudad;
@@ -127,35 +131,31 @@ app.post('/validarEntrenador', (req, res) => {
     let cp = datos.CodigoPostal;
     let rfc = datos.RFC;
     let nombre = datos.Nombre;
-
+  
     // Llamada al procedimiento almacenado
     let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?)";
-
+  
     conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre], (error, results, fields) => {
-        if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
-            if (error.sqlMessage.includes('La dirección ya existe')) {
-                return res.redirect('/gymFallo.html?error=direccion');
-            } else if (error.sqlMessage.includes('El RFC ya existe')) {
-                return res.redirect('/gymFallo.html?error=rfc');
-            } else {
-                return res.redirect('/gymFallo.html');
-            }
-        }
-
-        // Si la ejecución fue exitosa, obtener el código generado
-        if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
-            let codigoGym = results[0][0].codigo_gym;
-            return res.render('gymExito', { codigoGym }); // Pasar el código generado a la vista
+      if (error) {
+        console.error('Error ejecutando el procedimiento almacenado:', error);
+        if (error.code === 'ER_SIGNAL_EXCEPTION') {
+          return res.redirect('/gymFallo.html?error=specific'); // Redirigir en caso de error específico
         } else {
-            console.error('Error: No se recibió un código válido del procedimiento almacenado.');
-            return res.redirect('/gymFallo.html');
+          return res.redirect('/gymFallo.html?error=general'); // Redirigir en caso de otro error
         }
+      }
+  
+      // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
+      if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
+        let codigoGym = results[0][0].codigo_gym;
+        return res.redirect(`/gymExito.html?codigo=${codigoGym}`); // Pasar el código generado a la vista
+      } else {
+        console.error('Error: No se recibió un código válido del procedimiento almacenado.');
+        return res.redirect('/gymFallo.html?error=nocode');
+      }
     });
-});
-
-
-
+  });
+  
 
 app.listen(5500, () => {
     console.log('Servidor iniciado en http://localhost:5500');
