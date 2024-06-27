@@ -156,6 +156,36 @@ app.post('/validarEntrenador', (req, res) => {
     });
   });
   
+  app.post('/validarAdmin', (req, res) => {
+    const datos = req.body;
+
+    let nombre = datos.Nombre;
+    let apellido = datos.Apellido;
+    let fechaNacimiento = datos.FechaNacimiento;
+    let contacto = datos.Contacto;
+    let username = datos.username;
+    let password = datos.password;
+    let codigo_gym = datos.codigo;
+
+    // Hashing de la contraseña antes de enviar al procedimiento almacenado
+        // Llamada al procedimiento almacenado
+        let query = "CALL agregar_administrador(?, ?, ?, ?, ?, ?, ?)";
+
+        conexion.query(query, [nombre, apellido, fechaNacimiento, contacto, username, password, codigo_gym], (error, results, fields) => {
+            if (error) {
+                console.error('Error ejecutando el procedimiento almacenado:', error);
+                if (error.code === 'ER_SIGNAL_EXCEPTION') {
+                    return res.redirect('/adminFallo.html'); // Redirigir en caso de error específico
+                } else {
+                    return res.redirect('/adminFallo.html'); // Redirigir en caso de otro error
+                }
+            }
+
+            // Si la ejecución fue exitosa
+            return res.redirect('/adminExito.html');
+        });
+    });
+
 
 app.listen(5500, () => {
     console.log('Servidor iniciado en http://localhost:5500');
