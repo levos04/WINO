@@ -47,10 +47,31 @@
     </footer>
 
     <script>
+        // Funciones para manejar cookies
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
         // Mostrar mensaje de error si está presente en la URL
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('error') && urlParams.get('error') === 'datos_no_registrados') {
             document.getElementById('error-message').textContent = 'Datos no registrados';
+        }
+
+        // Guardar usuario y hasGymCode en cookies después de inicio de sesión
+        if (urlParams.has('usuario') && urlParams.has('hasGymCode')) {
+            setCookie('username', urlParams.get('usuario'), 7);
+            setCookie('hasGymCode', urlParams.get('hasGymCode'), 7);
+            window.location.href = '/gymCatalogo.html';  // Redirigir a la página de catálogo después de guardar las cookies
         }
     </script>
 </body>
