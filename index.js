@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mysql = require("mysql");
 const bodyParser = require('body-parser');
-
+const fs = require('fs');
 const app = express();
 const port = 5500;
 
@@ -120,7 +120,9 @@ app.post('/validarEntrenador', (req, res) => {
 
 app.post('/validarGym', (req, res) => {
     const datos = req.body;
+    const imagenFile = req.files ? req.files.Imagen : null; // Captura el archivo de imagen
 
+    // Extraer los datos del formulario
     let pais = datos.Pais;
     let estado = datos.Estado;
     let ciudad = datos.Ciudad;
@@ -128,26 +130,58 @@ app.post('/validarGym', (req, res) => {
     let cp = datos.CodigoPostal;
     let rfc = datos.RFC;
     let nombre = datos.Nombre;
+    let imagenPath = datos.Imagen;
 
-    // Llamada al procedimiento almacenado
-    let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?)";
+    // Si se subió una imagen
+    if (imagenFile) {
+        imagenPath = path.join('src/', imagenFile.name); // Ruta donde guardar la imagen en tu servidor
+        imagenFile.mv(imagenPath, (err) => {
+            if (err) {
+                console.error('Error al guardar la imagen:', err);
+                return res.redirect('/gymFallo.html?error=imagen');
+            }
 
-    conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre], (error, results) => {
-        if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
-            return res.redirect('/gymFallo.html?error=general');
-        }
+            // Llamada al procedimiento almacenado con la ruta de la imagen
+            let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
-        if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
-            let codigoGym = results[0][0].codigo_gym;
-            return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
-        } else {
-            console.error('Error: No se recibió un código válido del procedimiento almacenado.');
-            return res.redirect('/gymFallo.html?error=nocode');
-        }
-    });
+            conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre, imagenPath], (error, results) => {
+                if (error) {
+                    console.error('Error ejecutando el procedimiento almacenado:', error);
+                    return res.redirect('/gymFallo.html?error=general');
+                }
+
+                // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
+                if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
+                    let codigoGym = results[0][0].codigo_gym;
+                    return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
+                } else {
+                    console.error('Error: No se recibió un código válido del procedimiento almacenado.');
+                    return res.redirect('/gymFallo.html?error=nocode');
+                }
+            });
+        });
+    } else {
+        // Si no se subió una imagen, continuar sin ella
+        let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?, ?)";
+
+        conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre, imagenPath], (error, results) => {
+            if (error) {
+                console.error('Error ejecutando el procedimiento almacenado:', error);
+                return res.redirect('/gymFallo.html?error=general');
+            }
+
+            // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
+            if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
+                let codigoGym = results[0][0].codigo_gym;
+                return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
+            } else {
+                console.error('Error: No se recibió un código válido del procedimiento almacenado.');
+                return res.redirect('/gymFallo.html?error=nocode');
+            }
+        });
+    }
 });
+
 
 app.post('/validarAdmin', (req, res) => {
     const datos = req.body;
