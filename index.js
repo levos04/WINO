@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const mysql = require("mysql");
 const bodyParser = require('body-parser');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 5500;
@@ -29,8 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
-app.use(cookieParser());
 
 // Servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'views')));
@@ -237,17 +233,14 @@ app.post('/loginEntrenador', (req, res) => {
 
 // Ruta para obtener gimnasios con filtro
 app.get('/gimnasios', (req, res) => {
-    // const filtro = req.query.filter ? `%${req.query.filter}%` : '%';
-
-    let query = 'SELECT * FROM gimnasios'; //WHERE Nombre LIKE ? OR Direccion LIKE ?';
-    conexion.query(query, (error, results) => {             // [filtro, filtro],
+    let query = 'SELECT * FROM carta_gym';
+    conexion.query(query, (error, results) => {
         if (error) {
             console.error('Error en la consulta SQL:', error);
             res.status(500).send('Error en la base de datos');
             return;
         }
-
-        res.json(results);
+        res.json(results); // Enviar los resultados como JSON
     });
 });
 
