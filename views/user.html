@@ -37,14 +37,14 @@
             <i class="fa-solid fa-dumbbell"></i>
         </a>
         <div class="relative">
-            <button class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+            <button onclick="window.location.href='recetas.html'" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-apple-whole"></i>
             </button>
         </div>
-        <a href="#about" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-            <i class="fa-solid fa-ruler"></i>
-        </a>
-        <a href="#contact" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+        <a href="/Maquetado 2 unidad/configuracion.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+            <i class="fa-solid fa-gear"></i> <!-- Cambiado a fa-gear para la tuerca -->
+        </a>        
+        <a href="/Maquetado 2 unidad/Chat/Chats.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
             <i class="fas fa-address-book w-6 h-6"></i>
         </a>
     </div>
@@ -60,11 +60,15 @@
             <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
         </button>
         <!-- Perfil con foto -->
-        <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-            <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
-        </button>
+        <a href="/Maquetado 2 unidad/index.html">
+            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
+            </button>
+        </a>
+        
     </div>
 </nav>
+
 
 
 
@@ -108,7 +112,7 @@
 
 
     <!-- Contenedor de la fecha y hora -->
-    <div class="mt-4 mb-4 flex justify-center">
+<div class="mt-4 mb-4 flex justify-center">
         <div class="text-white bg-gray-800 rounded-lg p-4">
             <p class="text-sm">Fecha y hora: <span id="datetime"></span></p>
         </div>
