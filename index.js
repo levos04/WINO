@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'Maquetado 2 unidad')));
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
 // Rutas para servir archivos HTML
@@ -275,6 +276,29 @@ app.get('/gimnasios', (req, res) => {
             return;
         }
         res.json(results); // Enviar los resultados como JSON
+    });
+});
+
+// Ruta para registrar cliente en un gimnasio
+app.post('/registrarCliente', (req, res) => {
+    const { codigo_gym, usuario } = req.body;
+
+    if (!codigo_gym || !usuario) {
+        return res.status(400).send('Datos incompletos');
+    }
+
+    const query = 'UPDATE clientes SET codigo_gym = ? WHERE username = ?';
+    conexion.query(query, [codigo_gym, usuario], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error);
+            return res.status(500).send('Error en la base de datos');
+        }
+
+        if (results.affectedRows === 0) {
+            return res.status(404).send('Usuario no encontrado');
+        }
+
+        res.status(200).send('Registro actualizado correctamente');
     });
 });
 

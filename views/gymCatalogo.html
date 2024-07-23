@@ -1,111 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="output.css">
-        <title>Bienvenido</title>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    </head>
-    <body>
-        <!-- Barra de navegación lateral -->
-        <nav id="sidebar" class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 mx-8 text-white">
-            <!-- Logo -->
-            <a href="#home" class="mb-4">
-                <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- Barra de navegación lateral -->
+    <nav id="sidebar" class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 mx-8 text-white">
+        <!-- Logo -->
+        <a href="#home" class="mb-4">
+            <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15">
+        </a>
+
+        <!-- Enlaces de navegación -->
+        <div class="flex flex-col space-y-4">
+            <a id="main-link" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-house"></i>
             </a>
-
-            <!-- Enlaces de navegación -->
-            <div class="flex flex-col space-y-4">
-                <a id="main-link" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fa-solid fa-house"></i>
-                </a>
-                <a onclick="window.location.href='training.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fa-solid fa-dumbbell"></i>
-                </a>
-                <div class="relative">
-                    <button onclick="window.location.href='recetas.html'" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                        <i class="fa-solid fa-apple-whole"></i>
-                    </button>
-                </div>
-                <a href="/Maquetado 2 unidad/configuracion.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fa-solid fa-gear"></i> <!-- Cambiado a fa-gear para la tuerca -->
-                </a>        
-                <a href="/Maquetado 2 unidad/Chat/Chats.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                    <i class="fas fa-address-book w-6 h-6"></i>
-                </a>
-            </div>
-
-            <!-- Botones adicionales a la izquierda del perfil -->
-            <div class="flex flex-col items-center">
-                <!-- Botón 1 con icono -->
-                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
+            <a onclick="window.location.href='training.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-dumbbell"></i>
+            </a>
+            <div class="relative">
+                <button onclick="window.location.href='recetas.html'" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-apple-whole"></i>
                 </button>
-                <!-- Botón 2 con icono -->
-                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
-                </button>
-                <!-- Perfil con foto -->
-                <a href="/Maquetado 2 unidad/index.html">
-                    <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                        <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
-                    </button>
-                </a>
-                
             </div>
-        </nav>
-
-        <div class="container mx-auto p-4 py-6 max-w-7xl flex flex-col gap-2">
-            <div class="container mx-auto p-4 max-w-7xl flex flex-col gap-4">
-                <div class="flex justify-center">
-                    <input type="text" id="filtro" class="px-3 py-1.5 text-gray-900 ring-1 ring-gray-900 focus:ring-gray-900 sm:text-sm sm:leading-6" placeholder="Buscar gimnasios...">
-                    <button onclick="filtrarGimnasios()" class="px-4">Buscar</button>
-                </div>
-                <div id="gimnasios-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-10 my-6 bg-purple-600 rounded-lg p-10"></div>
-            </div>
+            <a href="configuracion.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-gear"></i> <!-- Cambiado a fa-gear para la tuerca -->
+            </a>        
+            <a href="/Maquetado 2 unidad/Chat/Chats.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fas fa-address-book w-6 h-6"></i>
+            </a>
         </div>
-    
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('/gimnasios')
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Datos de gimnasios:', data); // Mostrar los datos en la consola
-                        const container = document.getElementById('gimnasios-container');
-                        data.forEach(gimnasio => {
-                            const card = document.createElement('div');
-                            card.className = 'bg-white rounded-lg shadow-lg p-6 mb-6 flex flex-col items-center';
-                            card.innerHTML = `
-                                <img src="src/${gimnasio.imagen}" alt="${gimnasio.Nombre}" class="object-cover rounded-t-lg w-full h-48">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-semibold text-gray-800">${gimnasio.Nombre}</h2>
-                                    <p class="text-gray-600">${gimnasio.Direccion}</p>
-                                </div>
-                            `;
-                            container.appendChild(card);
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
+
+        <!-- Botones adicionales a la izquierda del perfil -->
+        <div class="flex flex-col items-center">
+            <!-- Botón 1 con icono -->
+            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
+            </button>
+            <!-- Botón 2 con icono -->
+            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
+            </button>
+            <!-- Perfil con foto -->
+            <a href="/Maquetado 2 unidad/index.html">
+                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
+                </button>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 py-6 max-w-7xl flex flex-col gap-2">
+        <div class="container mx-auto p-4 max-w-7xl flex flex-col gap-4">
+            <div class="flex justify-center">
+                <input type="text" id="filtro" class="px-3 py-1.5 text-gray-900 ring-1 ring-gray-900 focus:ring-gray-900 sm:text-sm sm:leading-6" placeholder="Buscar gimnasios...">
+                <button onclick="filtrarGimnasios()" class="px-4">Buscar</button>
+            </div>
+            <div id="gimnasios-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-10 my-6 bg-purple-600 rounded-lg p-10"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/gimnasios')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Datos de gimnasios:', data); // Mostrar los datos en la consola
+                    const container = document.getElementById('gimnasios-container');
+                    data.forEach(gimnasio => {
+                        const card = document.createElement('div');
+                        card.className = 'bg-white rounded-lg shadow-lg p-6 mb-6 flex flex-col items-center';
+                        card.innerHTML = `
+                            <img src="src/${gimnasio.imagen}" alt="${gimnasio.Nombre}" class="object-cover rounded-t-lg w-full h-48">
+                            <div class="p-4">
+                                <h2 class="text-xl font-semibold text-gray-800">${gimnasio.Nombre}</h2>
+                                <p class="text-gray-600">${gimnasio.Direccion}</p>
+                                <button type="button" onclick="registrarCliente('${gimnasio.codigo_gym}')" class="rounded-full bg-gray-950 px-3 py-2 text-sm font-semibold text-white shadow-lg mt-5">Registrarme</button>
+                            </div>
+                        `;
+                        container.appendChild(card);
                     });
-            });
-        
-            window.onload = function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const hasGymCode = urlParams.get('hasGymCode');
-                const username = urlParams.get('usuario');
-                const mainLink = document.getElementById('main-link');
-        
-                // Set the main page link based on hasGymCode value
-                if (hasGymCode === 'yes') {
-                    mainLink.href = `user.html?usuario=${username}&hasGymCode=yes`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+
+        function registrarCliente(codigoGym) {
+            fetch('/registrarCliente', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ codigo_gym: codigoGym })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Registrado correctamente');
+                    // Redirigir al usuario después del registro
+                    window.location.href = '/user.html';
                 } else {
-                    mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
+                    alert('Error al registrarse');
                 }
-            };
-        </script>      
-    </body>
+            })
+            .catch(error => {
+                console.error('Error en el registro:', error);
+            });
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hasGymCode = urlParams.get('hasGymCode');
+            const username = urlParams.get('usuario');
+            const mainLink = document.getElementById('main-link');
+
+            // Set the main page link based on hasGymCode value
+            if (hasGymCode === 'yes') {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=yes`;
+            } else {
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
+            }
+        };
+    </script>      
+</body>
 </html>
