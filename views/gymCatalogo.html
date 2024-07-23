@@ -11,45 +11,34 @@
 </head>
 <body>
     <!-- Barra de navegación lateral -->
-    <nav id="sidebar" class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 mx-8 text-white">
+    <nav id="sidebar" class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 text-white">
         <!-- Logo -->
         <a href="#home" class="mb-4">
             <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15">
         </a>
-
         <!-- Enlaces de navegación -->
         <div class="flex flex-col space-y-4">
             <a id="main-link" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a onclick="window.location.href='training.html'" href="#home" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+            <a id="rutinas" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-dumbbell"></i>
             </a>
             <div class="relative">
-                <button onclick="window.location.href='recetas.html'" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <button id="recetas" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                     <i class="fa-solid fa-apple-whole"></i>
                 </button>
             </div>
-            <a href="configuracion.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                <i class="fa-solid fa-gear"></i> <!-- Cambiado a fa-gear para la tuerca -->
-            </a>        
-            <a href="/Maquetado 2 unidad/Chat/Chats.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
-                <i class="fas fa-address-book w-6 h-6"></i>
-            </a>
         </div>
-
         <!-- Botones adicionales a la izquierda del perfil -->
-        <div class="flex flex-col items-center">
-            <!-- Botón 1 con icono -->
-            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <i class="fas fa-chevron-right w-8 h-8 p-2 rounded-full"></i>
-            </button>
-            <!-- Botón 2 con icono -->
-            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <i class="fas fa-chevron-left w-8 h-8 p-2 rounded-full"></i>
-            </button>
-            <!-- Perfil con foto -->
-            <a href="/Maquetado 2 unidad/index.html">
+        <div class="flex flex-col items-center space-y-2">
+            <a id="configuracion" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+            <a id="chats" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fas fa-address-book"></i>
+            </a>
+            <a id="perfil">
                 <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
                 </button>
@@ -119,15 +108,56 @@
             const urlParams = new URLSearchParams(window.location.search);
             const hasGymCode = urlParams.get('hasGymCode');
             const username = urlParams.get('usuario');
+            const codigo = urlParams.get('codigo_gym');
             const mainLink = document.getElementById('main-link');
 
             // Set the main page link based on hasGymCode value
             if (hasGymCode === 'yes') {
-                mainLink.href = `user.html?usuario=${username}&hasGymCode=yes`;
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${codigo}`;
             } else {
                 mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
             }
         };
+
+        document.getElementById('rutinas').addEventListener('click', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const usuario = urlParams.get('usuario');
+            const hasGymCode = urlParams.get('hasGymCode');
+            const codigo = urlParams.get('codigo_gym');
+            window.location.href = `training.html?usuario=${usuario}&hasGymCode=${codigo}`;
+        });
+
+        document.getElementById('recetas').addEventListener('click', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const usuario = urlParams.get('usuario');
+            const hasGymCode = urlParams.get('hasGymCode');
+            const codigo = urlParams.get('codigo_gym');
+            window.location.href = `recetas.html?usuario=${usuario}&hasGymCode=${codigo}`;
+        });
+
+        document.getElementById('configuracion').addEventListener('click', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const usuario = urlParams.get('usuario');
+            const hasGymCode = urlParams.get('hasGymCode');
+            const codigo = urlParams.get('codigo_gym');
+            window.location.href = `configuracion.html?usuario=${usuario}&hasGymCode=${codigo}`;
+        });
+
+        document.getElementById('chats').addEventListener('click', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const usuario = urlParams.get('usuario');
+            const hasGymCode = urlParams.get('hasGymCode');
+            const codigo = urlParams.get('codigo_gym');
+            window.location.href = `chats.html?usuario=${usuario}&hasGymCode=${codigo}`;
+        });
+
+        document.getElementById('perfil').addEventListener('click', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const usuario = urlParams.get('usuario');
+            const hasGymCode = urlParams.get('hasGymCode');
+            const codigo = urlParams.get('codigo_gym');
+            window.location.href = `perfil.html?usuario=${usuario}&hasGymCode=${codigo}`;
+        });
     </script>      
 </body>
 </html>
