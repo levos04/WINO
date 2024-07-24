@@ -62,26 +62,15 @@ app.post('/validarMiembro', (req, res) => {
     let pass = datos.password;
 
     // Llamada al procedimiento almacenado
-    let registrar = "CALL agregar_cliente(?, ?, ?, ?, ?, ?)";
+    let registrar = "INSERT INTO `clientes`(`nombre`, `apellido`, `fecha_nacimiento`, `contacto`, `username`, `password`) VALUES (?,?,?,?,?,?)";
 
-    conexion.query(registrar, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
+    conexion.query(query, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
         if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
+            console.error('Error creando su perfil:', error);
             return res.redirect('/miembroFallo.html');
         }
 
-        // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
-        if (results && results.length > 0 && results[0][0] && results[0][0].mensaje) {
-            let mensaje = results[0][0].mensaje;
-            if (mensaje.includes('Error')) {
-                return res.redirect('/miembroFallo.html');
-            } else {
-                return res.redirect('/miembroExito.html');
-            }
-        } else {
-            console.error('Error: No se recibió un mensaje válido del procedimiento almacenado.');
-            return res.redirect('/miembroFallo.html');
-        }
+        return res.redirect('/miembroExito.html');
     });
 });
 
@@ -95,27 +84,16 @@ app.post('/validarEntrenador', (req, res) => {
     let nu = datos.NombreUsuario;
     let pass = datos.password;
 
-    // Llamada al procedimiento almacenado
-    let registrar = "CALL agregar_entrenador(?, ?, ?, ?, ?, ?)";
+    // Inserción directa a la tabla
+    let query = "INSERT INTO entrenadores (nombre, apellido, fecha_nacimiento, contacto, username, password) VALUES (?, ?, ?, ?, ?, ?)";
 
-    conexion.query(registrar, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
+    conexion.query(query, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
         if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
+            console.error('Error ejecutando la inserción:', error);
             return res.redirect('/entrenadorFallo.html');
         }
 
-        // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
-        if (results && results.length > 0 && results[0][0] && results[0][0].mensaje) {
-            let mensaje = results[0][0].mensaje;
-            if (mensaje.includes('Error')) {
-                return res.redirect('/entrenadorFallo.html');
-            } else {
-                return res.redirect('/entrenadorExito.html');
-            }
-        } else {
-            console.error('Error: No se recibió un mensaje válido del procedimiento almacenado.');
-            return res.redirect('/entrenadorFallo.html');
-        }
+        return res.redirect('/entrenadorExito.html');
     });
 });
 
@@ -154,7 +132,7 @@ app.post('/validarGym', (req, res) => {
                 // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
                 if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
                     let codigoGym = results[0][0].codigo_gym;
-                    return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
+                    return res.redirect('/gymExito.html?codigo=${codigoGym}');
                 } else {
                     console.error('Error: No se recibió un código válido del procedimiento almacenado.');
                     return res.redirect('/gymFallo.html?error=nocode');
@@ -174,7 +152,7 @@ app.post('/validarGym', (req, res) => {
             // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
             if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
                 let codigoGym = results[0][0].codigo_gym;
-                return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
+                return res.redirect('/gymExito.html?codigo=${codigoGym}');
             } else {
                 console.error('Error: No se recibió un código válido del procedimiento almacenado.');
                 return res.redirect('/gymFallo.html?error=nocode');
@@ -182,7 +160,6 @@ app.post('/validarGym', (req, res) => {
         });
     }
 });
-
 
 app.post('/validarAdmin', (req, res) => {
     const datos = req.body;
@@ -195,16 +172,15 @@ app.post('/validarAdmin', (req, res) => {
     let password = datos.password;
     let codigo_gym = datos.codigo;
 
-    // Llamada al procedimiento almacenado
-    let query = "CALL agregar_administrador(?, ?, ?, ?, ?, ?, ?)";
+    // Inserción directa a la tabla
+    let query = "INSERT INTO administradores (Nombre, Apellido, FechaNacimiento, Contacto, username, password, codigo_gym) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     conexion.query(query, [nombre, apellido, fechaNacimiento, contacto, username, password, codigo_gym], (error) => {
         if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
+            console.error('Error ejecutando la inserción:', error);
             return res.redirect('/adminFallo.html');
         }
 
-        // Si la ejecución fue exitosa
         return res.redirect('/adminExito.html');
     });
 });
@@ -268,7 +244,7 @@ app.post('/loginEntrenador', (req, res) => {
 
 // Ruta para obtener gimnasios con filtro
 app.get('/gimnasios', (req, res) => {
-    let query = 'SELECT * FROM carta_gym';
+    let query = 'SELECT * FROM gimnasios';
     conexion.query(query, (error, results) => {
         if (error) {
             console.error('Error en la consulta SQL:', error);
