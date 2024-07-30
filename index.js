@@ -5,11 +5,11 @@ const mysql = require("mysql");
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-const port = 13172;
+const port = 3306;
 
 // Configuración de conexión a la base de datos
 let conexion = mysql.createConnection({
-    host: "@monorail.proxy.rlwy.net",
+    host: "monorail.proxy.rlwy.net",
     database: "railway",
     user: "root",
     password: "OOlfSwenfwTJjpHaGLbtKdktRjCFeMzF",
