@@ -97,55 +97,36 @@
             const hasGymCode = urlParams.get('hasGymCode');
             const username = urlParams.get('usuario');
             const codigo = urlParams.get('codigo_gym');
+            
+            // Configurar los enlaces de navegación
             const mainLink = document.getElementById('main-link');
-
-            // Set the main page link based on hasGymCode value
-            if (hasGymCode === 'yes') {
-                mainLink.href = `user.html?usuario=${username}&hasGymCode=${codigo}`;
+            if (codigo && codigo !== "null") {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             } else {
-                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             }
+    
+            // Configuración de eventos para los botones de navegación
+            document.getElementById('rutinas').addEventListener('click', function() {
+                window.location.href = `training.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('recetas').addEventListener('click', function() {
+                window.location.href = `recetas.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('configuracion').addEventListener('click', function() {
+                window.location.href = `configuracion.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('chats').addEventListener('click', function() {
+                window.location.href = `chats.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('perfil').addEventListener('click', function() {
+                window.location.href = `perfil.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
         };
-
-        document.getElementById('rutinas').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `training.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('recetas').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `recetas.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('configuracion').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `configuracion.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('chats').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `chats.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('perfil').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `perfil.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
     </script>
 </body>
 </html>

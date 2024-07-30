@@ -15,13 +15,13 @@
         <nav class="barra-navegacion">
             <ul>
                 <li><a id="main-link">Inicio</a></li>
-                <li><a href="perfil.html">Mi Cuenta</a></li>
-                <li><a href="Chats.html">Contactanos Por Chat</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="configuracion.html">Configuracion</a></li>
-                <li><a href="permisos.html">Privacidad y Permisos</a></li>
-                <li><a href="terminos.html">Términos y Condiciones</a></li>
-                <!-- Añadir más opciones aquí -->
+                <li><a id="perfil">Mi Cuenta</a></li>
+                <li><a id="chats">Contactanos Por Chat</a></li>
+                <li><a id="servicios">Servicios</a></li>
+                <li><a id="configuracion">Configuracion</a></li>
+                <li><a id="permisos">Privacidad y Permisos</a></li>
+                <li><a id="terminos">Términos y Condiciones</a></li>
+
             </ul>
         </nav>
         <main>
@@ -63,18 +63,45 @@
     <script src="script.js"></script>
 
     <script>
-        window.onload = function() {
+                window.onload = function() {    
             const urlParams = new URLSearchParams(window.location.search);
             const hasGymCode = urlParams.get('hasGymCode');
             const username = urlParams.get('usuario');
+            const codigo = urlParams.get('codigo_gym');
+            
+            // Configurar los enlaces de navegación
             const mainLink = document.getElementById('main-link');
-
-            // Set the main page link based on hasGymCode value
-            if (hasGymCode === 'yes') {
-                mainLink.href = `user.html?usuario=${username}&hasGymCode=yes`;
+            if (codigo && codigo !== "null") {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             } else {
-                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             }
+    
+            // Configuración de eventos para los botones de navegación
+
+            document.getElementById('perfil').addEventListener('click', function() {
+                window.location.href = `perfil.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('chats').addEventListener('click', function() {
+                window.location.href = `chats.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('servicios').addEventListener('click', function() {
+                window.location.href = `servicios.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('configuracion').addEventListener('click', function() {
+                window.location.href = `configuracion.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('permisos').addEventListener('click', function() {
+                window.location.href = `permisos.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('terminos').addEventListener('click', function() {
+                window.location.href = `terminos.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
         };
     </script>
 </body>

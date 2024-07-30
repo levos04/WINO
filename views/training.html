@@ -18,175 +18,157 @@
             </a>
             <!-- Enlaces de navegación -->
             <div class="flex flex-col space-y-4">
-                <a id="main-link" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <a id="main-link" href="#" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                     <i class="fa-solid fa-house"></i>
                 </a>
-                <a id="rutinas" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <a id="rutinas" href="#" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                     <i class="fa-solid fa-dumbbell"></i>
                 </a>
                 <div class="relative">
-                    <button id="recetas" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <button id="recetas" href="#" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                         <i class="fa-solid fa-apple-whole"></i>
                     </button>
                 </div>
             </div>
             <!-- Botones adicionales a la izquierda del perfil -->
             <div class="flex flex-col items-center space-y-2">
-                <a id="configuracion" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <a id="configuracion" href="#" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                     <i class="fa-solid fa-gear"></i>
                 </a>
-                <a id="chats" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <a id="chats" href="#" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
                     <i class="fas fa-address-book"></i>
                 </a>
-                <a id="perfil">
+                <a id="perfil" href="#">
                     <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                         <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
                     </button>
                 </a>
             </div>
         </nav>
-         <!-- Sección de Bienvenida -->
-         <section id="home" class="bg-cover bg-center h-64 md:h-96" style="background-image: url('../src/ejercicioslol.webp');">
-            <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
-                <div class="text-center p-4 md:p-8">
-                    <h1 class="text-white text-3xl md:text-4xl font-bold mb-2 md:mb-4 font-mono">Bienvenido a tus ejercicios</h1>
-                    <p class="text-white text-md md:text-lg font-mono">Tu elijes como comenzar</p>
+    
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Sección de Bienvenida -->
+            <section id="home" class="bg-cover bg-center h-64 md:h-96" style="background-image: url('../src/ejercicioslol.webp');">
+                <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+                    <div class="text-center p-4 md:p-8">
+                        <h1 class="text-white text-3xl md:text-4xl font-bold mb-2 md:mb-4 font-mono">Bienvenido a tus ejercicios</h1>
+                        <p class="text-white text-md md:text-lg font-mono">Tu elijes como comenzar</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-        
-
-<!-- Sección de Ejercicios -->
-<section id="exercises" class="py-12">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold text-Demicolor2 mb-8">Ejercicios Pendientes</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Ejercicio 1 -->
-            <a href="#" class="relative bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="../src/Cardio.jpg" alt="Ejercicio 1" class="w-full h-56 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl text-gray-200 mb-2">Bicicleta estatica</h3>
-                    <p class="text-gray-200">30min consecutivos faltantes</p>
+            </section>
+    
+            <!-- Sección de Ejercicios -->
+            <section id="exercises" class="py-12 bg-center h-64 md:h-96">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-Demicolor2 mb-8">Ejercicios Pendientes</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Ejercicio 1 -->
+                        <div class="card bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                            <img src="../src/Cardio.jpg" alt="Ejercicio 1" class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-xl text-gray-200 mb-2">Bicicleta estatica</h3>
+                                <p class="text-gray-200">30min consecutivos faltantes</p>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                                ¡Sigue pedaleando!
+                            </div>
+                        </div>
+                        <!-- Ejercicio 2 -->
+                        <div class="card bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                            <img src="/src/Fuerza.jpeg" alt="Ejercicio 2" class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-xl text-gray-200 mb-2">Sentadilla con peso</h3>
+                                <p class="text-gray-200">3 repeticiones / 10 sentadillas</p>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                                ¡Mantén la fuerza!
+                            </div>
+                        </div>
+                        <!-- Ejercicio 3 -->
+                        <div class="card bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                            <img src="/src/Saludo al sol.jpg" alt="Ejercicio 3" class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-xl text-gray-200 mb-2">Saludo al sol</h3>
+                                <p class="text-gray-200">Realizar toda la rutina</p>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                                ¡Namasté!
+                            </div>
+                        </div>
+                        <!-- Ejercicio 4 -->
+                        <div class="card bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                            <img src="/src/Press.jpg" alt="Ejercicio 4" class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-xl text-gray-200 mb-2">Press de banca</h3>
+                                <p class="text-gray-200">3 repeticiones / 5 levantamientos</p>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                                ¡Empuja fuerte!
+                            </div>
+                        </div>
+                        <!-- Ejercicio 5 -->
+                        <div class="card bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                            <img src="/src/Cardio2.jpeg" alt="Ejercicio 5" class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-xl text-gray-200 mb-2">Salto de cuerda</h3>
+                                <p class="text-gray-200">Saltar la cuerda durante 30min</p>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                                ¡Sigue saltando!
+                            </div>
+                        </div>
+                        <!-- Ejercicio 6 -->
+                        <div class="card bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                            <img src="/src/Yoga.jpg" alt="Ejercicio 6" class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-xl text-gray-200 mb-2">Uttanasana</h3>
+                                <p class="text-gray-200">Realizar la postura durante al final de cada rutina</p>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
+                                ¡Relájate y estira!
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
-                    ¡Sigue pedaleando!
-                </div>
-            </a>
-            <!-- Ejercicio 2 -->
-            <a href="#" class="relative bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="/src/Fuerza.jpeg" alt="Ejercicio 2" class="w-full h-56 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl text-gray-200 mb-2">Sentadilla con peso</h3>
-                    <p class="text-gray-200">3 repeticiones / 10 sentadillas</p>
-                </div>
-                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
-                    ¡Mantén la fuerza!
-                </div>
-            </a>
-            <!-- Ejercicio 3 -->
-            <a href="#" class="relative bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="/src/Saludo al sol.jpg" alt="Ejercicio 3" class="w-full h-56 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl text-gray-200 mb-2">Saludo al sol</h3>
-                    <p class="text-gray-200">Realizar toda la rutina</p>
-                </div>
-                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
-                    ¡Namasté!
-                </div>
-            </a>
-            <!-- Ejercicio 4 -->
-            <a href="#" class="relative bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="/src/Press.jpg" alt="Ejercicio 4" class="w-full h-56 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl text-gray-200 mb-2">Press de banca</h3>
-                    <p class="text-gray-200">3 repeticiones / 5 levantamientos</p>
-                </div>
-                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
-                    ¡Empuja fuerte!
-                </div>
-            </a>
-            <!-- Ejercicio 5 -->
-            <a href="#" class="relative bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="/src/Cardio2.jpeg" alt="Ejercicio 5" class="w-full h-56 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl text-gray-200 mb-2">Salto de cuerda</h3>
-                    <p class="text-gray-200">Saltar la cuerda durante 30min</p>
-                </div>
-                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
-                    ¡Sigue saltando!
-                </div>
-            </a>
-            <!-- Ejercicio 6 -->
-            <a href="#" class="relative bg-Demicolor2 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="/src/Yoga.jpg" alt="Ejercicio 3" class="w-full h-56 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl text-gray-200 mb-2">Uttanasana</h3>
-                    <p class="text-gray-200">Realizar la postura durante al final de cada rutina</p>
-                </div>
-                <div class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center text-white text-xl font-bold hidden hover:block">
-                    ¡Relájate y estira!
-                </div>
-            </a>
+            </section>            
         </div>
-    </div>
-</section>
-
-<script>
-        window.onload = function() {
+        <script>
+        window.onload = function() { 
             const urlParams = new URLSearchParams(window.location.search);
             const hasGymCode = urlParams.get('hasGymCode');
             const username = urlParams.get('usuario');
             const codigo = urlParams.get('codigo_gym');
+            
+            // Configurar los enlaces de navegación
             const mainLink = document.getElementById('main-link');
-
-            // Set the main page link based on hasGymCode value
-            if (hasGymCode === 'yes') {
-                mainLink.href = `user.html?usuario=${username}&hasGymCode=${codigo}`;
+            if (codigo && codigo !== "null") {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             } else {
-                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             }
+    
+            // Configuración de eventos para los botones de navegación
+            document.getElementById('rutinas').addEventListener('click', function() {
+                window.location.href = `training.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('recetas').addEventListener('click', function() {
+                window.location.href = `recetas.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('configuracion').addEventListener('click', function() {
+                window.location.href = `configuracion.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('chats').addEventListener('click', function() {
+                window.location.href = `chats.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('perfil').addEventListener('click', function() {
+                window.location.href = `perfil.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
         };
-
-        document.getElementById('rutinas').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `training.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('recetas').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `recetas.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('configuracion').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `configuracion.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('chats').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `chats.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-
-        document.getElementById('perfil').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `perfil.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
-</script>
-     
+        </script>
 </body>
 </html>

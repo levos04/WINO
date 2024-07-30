@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const path = require('path');
 const mysql = require("mysql");
 const bodyParser = require('body-parser');
@@ -20,6 +21,31 @@ conexion.connect((err) => {
         return;
     }
     console.log('Conexión a la base de datos MySQL establecida.');
+});
+
+// Configuración de almacenamiento de multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // Carpeta donde se guardarán los archivos
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Middleware para servir archivos estáticos
+app.use('/uploads', express.static('uploads'));
+
+// Ruta para manejar el formulario de carga de archivos
+app.post('/upload', upload.single('Imagen'), (req, res) => {
+    try {
+        res.status(200).send('Archivo subido correctamente: ' + req.file.path);
+    } catch (error) {
+        res.status(400).send('Error al subir el archivo.');
+    }
 });
 
 // Middlewares
@@ -64,7 +90,7 @@ app.post('/validarMiembro', (req, res) => {
     // Llamada al procedimiento almacenado
     let registrar = "INSERT INTO `clientes`(`nombre`, `apellido`, `fecha_nacimiento`, `contacto`, `username`, `password`) VALUES (?,?,?,?,?,?)";
 
-    conexion.query(query, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
+    conexion.query(registrar, [nombre, apellido, fn, contacto, nu, pass], (error, results) => {
         if (error) {
             console.error('Error creando su perfil:', error);
             return res.redirect('/miembroFallo.html');
@@ -97,9 +123,9 @@ app.post('/validarEntrenador', (req, res) => {
     });
 });
 
-app.post('/validarGym', (req, res) => {
+app.post('/validarGym', upload.single('Imagen'), (req, res) => {
     const datos = req.body;
-    const imagenFile = req.files ? req.files.Imagen : null; // Captura el archivo de imagen
+    const imagenFile = req.file; // Captura el archivo de imagen
 
     // Extraer los datos del formulario
     let pais = datos.Pais;
@@ -109,56 +135,26 @@ app.post('/validarGym', (req, res) => {
     let cp = datos.CodigoPostal;
     let rfc = datos.RFC;
     let nombre = datos.Nombre;
-    let imagenPath = datos.Imagen;
+    let imagenPath = imagenFile ? path.join('/uploads/', imagenFile.filename) : null; // Ruta donde se guardó la imagen en tu servidor
 
-    // Si se subió una imagen
-    if (imagenFile) {
-        imagenPath = path.join('src/', imagenFile.name); // Ruta donde guardar la imagen en tu servidor
-        imagenFile.mv(imagenPath, (err) => {
-            if (err) {
-                console.error('Error al guardar la imagen:', err);
-                return res.redirect('/gymFallo.html?error=imagen');
-            }
+    // Llamada al procedimiento almacenado con la ruta de la imagen
+    let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?, ?)";
 
-            // Llamada al procedimiento almacenado con la ruta de la imagen
-            let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?, ?)";
+    conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre, imagenPath], (error, results) => {
+        if (error) {
+            console.error('Error ejecutando el procedimiento almacenado:', error);
+            return res.redirect('/gymFallo.html?error=general');
+        }
 
-            conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre, imagenPath], (error, results) => {
-                if (error) {
-                    console.error('Error ejecutando el procedimiento almacenado:', error);
-                    return res.redirect('/gymFallo.html?error=general');
-                }
-
-                // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
-                if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
-                    let codigoGym = results[0][0].codigo_gym;
-                    return res.redirect('/gymExito.html?codigo=${codigoGym}');
-                } else {
-                    console.error('Error: No se recibió un código válido del procedimiento almacenado.');
-                    return res.redirect('/gymFallo.html?error=nocode');
-                }
-            });
-        });
-    } else {
-        // Si no se subió una imagen, continuar sin ella
-        let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?, ?)";
-
-        conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre, imagenPath], (error, results) => {
-            if (error) {
-                console.error('Error ejecutando el procedimiento almacenado:', error);
-                return res.redirect('/gymFallo.html?error=general');
-            }
-
-            // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
-            if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
-                let codigoGym = results[0][0].codigo_gym;
-                return res.redirect('/gymExito.html?codigo=${codigoGym}');
-            } else {
-                console.error('Error: No se recibió un código válido del procedimiento almacenado.');
-                return res.redirect('/gymFallo.html?error=nocode');
-            }
-        });
-    }
+        // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
+        if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
+            let codigoGym = results[0][0].codigo_gym;
+            return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
+        } else {
+            console.error('Error: No se recibió un código válido del procedimiento almacenado.');
+            return res.redirect('/gymFallo.html?error=nocode');
+        }
+    });
 });
 
 app.post('/validarAdmin', (req, res) => {
@@ -170,12 +166,12 @@ app.post('/validarAdmin', (req, res) => {
     let contacto = datos.Contacto;
     let username = datos.username;
     let password = datos.password;
-    let codigo_gym = datos.codigo;
+    let codigo = datos.codigo;
 
     // Inserción directa a la tabla
-    let query = "INSERT INTO administradores (Nombre, Apellido, FechaNacimiento, Contacto, username, password, codigo_gym) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    let query = "INSERT INTO administradores (Nombre, Apellido, FechaNacimiento, Contacto, username, password, codigo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    conexion.query(query, [nombre, apellido, fechaNacimiento, contacto, username, password, codigo_gym], (error) => {
+    conexion.query(query, [nombre, apellido, fechaNacimiento, contacto, username, password, codigo], (error) => {
         if (error) {
             console.error('Error ejecutando la inserción:', error);
             return res.redirect('/adminFallo.html');
@@ -208,13 +204,13 @@ app.post('/loginMiembro', (req, res) => {
         const cliente = results[0];
         const hasGymCode = cliente.codigo_gym ? 'yes' : 'no';
 
-        if (!cliente.codigo_gym) {
-            // Si el cliente no tiene un codigo_gym asignado
-            return res.redirect(`/welcome.html?usuario=${username}&hasGymCode=${hasGymCode}`);
+        if (cliente.codigo_gym) {
+            // Redirigir al usuario con el código de gimnasio
+            return res.redirect(`/user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${cliente.codigo_gym}`);
+        } else {
+            // Redirigir al usuario sin código de gimnasio
+            return res.redirect(`/welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${cliente.codigo_gym}`);
         }
-
-        // Si el cliente tiene un codigo_gym asignado
-        return res.redirect(`/user.html?usuario=${username}&hasGymCode=${hasGymCode}`);
     });
 });
 
@@ -255,26 +251,47 @@ app.get('/gimnasios', (req, res) => {
     });
 });
 
+app.get('/clientes', (req, res) => {
+    const username = req.query.username; // Obtener el valor de username de la query string
+    if (!username) {
+        res.status(400).send('Username es requerido');
+        return;
+    }
+
+    const query = 'SELECT * FROM clientes WHERE username = ?';
+    conexion.query(query, [username], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error); // Log the error to the console
+            res.status(500).send('Error en la base de datos');
+            return;
+        }
+        res.json(results); // Enviar los resultados como JSON
+    });
+});
+
+
 // Ruta para registrar cliente en un gimnasio
 app.post('/registrarCliente', (req, res) => {
     const { codigo_gym, usuario } = req.body;
 
+    // Verifica si ambos campos están presentes
     if (!codigo_gym || !usuario) {
-        return res.status(400).send('Datos incompletos');
+        return res.status(400).json({ error: 'Datos incompletos' });
     }
 
     const query = 'UPDATE clientes SET codigo_gym = ? WHERE username = ?';
     conexion.query(query, [codigo_gym, usuario], (error, results) => {
         if (error) {
             console.error('Error en la consulta SQL:', error);
-            return res.status(500).send('Error en la base de datos');
+            return res.status(500).json({ error: 'Error en la base de datos' });
         }
 
+        // Verifica si se actualizó alguna fila
         if (results.affectedRows === 0) {
-            return res.status(404).send('Usuario no encontrado');
+            return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
-        res.status(200).send('Registro actualizado correctamente');
+        res.status(200).json({ message: 'Registro actualizado correctamente' });
     });
 });
 

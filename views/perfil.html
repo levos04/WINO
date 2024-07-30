@@ -18,98 +18,125 @@
                 <li><a id="perfil">Mi Cuenta</a></li>
                 <li><a id="chats">Contactanos Por Chat</a></li>
                 <li><a id="servicios">Servicios</a></li>
-                <li><a href="configuracion.html">Configuracion</a></li>
-                <li><a href="permisos.html">Privacidad y Permisos</a></li>
-                <li><a href="terminos.html">Términos y Condiciones</a></li>
-                <!-- Añadir más opciones aquí -->
+                <li><a id="configuracion">Configuracion</a></li>
+                <li><a id="permisos">Privacidad y Permisos</a></li>
+                <li><a id="terminos">Términos y Condiciones</a></li>
+
             </ul>
         </nav>
         <main>
             <div class="mi-cuenta">
                 <h2>MI CUENTA</h2>
-                <div class="section">
-                    <div class="section-title">FOTO DE PERFIL</div>
-                    <div class="section-content profile-photo">
-                        <img src="../src/perfil.webp" alt="Foto de perfil">
-                        <div>
-                            <button id="quitar-foto">QUITAR FOTO</button>
-                            <button id="cambiar-foto">CAMBIAR FOTO</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="section-title">NOMBRE</div>
-                    <div class="section-content">
-                        <span>Nombre Nombre Apellido Apellido</span>
-                        <button>EDITAR</button>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="section-title">CORREO ELECTRONICO</div>
-                    <div class="section-content">
-                        <span class="email">Ejemplo@gmail.com</span>
-                        <button>AGREGAR</button>
-                        <button>EDITAR</button>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="section-title">ELIMINAR</div>
-                    <div class="section-content">
-                        <span>Deberá esperar un tiempo aproximado de 3 días hábiles para confirmar su eliminación</span>
-                        <button>ELIMINAR</button>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="section-title">CORREO DE RECUPERACIÓN</div>
-                    <div class="section-content">
-                        <button>AGREGAR</button>
-                        <button>ACTUALIZAR</button>
-                    </div>
+                <div id="clientes-container" class="clientes-container">
+                    <!-- Aquí se mostrarán los datos de los clientes -->
                 </div>
             </div>
             <!-- Contenido principal -->
         </main>
     </div>
-    <script src="script.js"></script>
-
     <script>
-        window.onload = function() {
+        window.onload = function() {    
             const urlParams = new URLSearchParams(window.location.search);
             const hasGymCode = urlParams.get('hasGymCode');
             const username = urlParams.get('usuario');
+            const codigo = urlParams.get('codigo_gym');
+            
+            // Configurar los enlaces de navegación
             const mainLink = document.getElementById('main-link');
-    
-            // Set the main page link based on hasGymCode value
-            if (hasGymCode === 'yes') {
-                mainLink.href = `user.html?usuario=${username}&hasGymCode=yes`;
+            if (codigo && codigo !== "null") {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             } else {
-                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=no`;
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
             }
-        };
 
-        document.getElementById('perfil').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `perfil.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
+            // Configuración de eventos para los botones de navegación
+            document.getElementById('perfil').addEventListener('click', function() {
+                window.location.href = `perfil.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
 
-        document.getElementById('chats').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `Chats.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
+            document.getElementById('chats').addEventListener('click', function() {
+                window.location.href = `chats.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
 
-        document.getElementById('servicios').addEventListener('click', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const usuario = urlParams.get('usuario');
-            const hasGymCode = urlParams.get('hasGymCode');
-            const codigo = urlParams.get('codigo_gym');
-            window.location.href = `servicios.html?usuario=${usuario}&hasGymCode=${codigo}`;
-        });
+            document.getElementById('servicios').addEventListener('click', function() {
+                window.location.href = `servicios.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('configuracion').addEventListener('click', function() {
+                window.location.href = `configuracion.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('permisos').addEventListener('click', function() {
+                window.location.href = `permisos.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('terminos').addEventListener('click', function() {
+                window.location.href = `terminos.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            // Fetch datos de clientes y actualizar el DOM
+            if (username) {
+                fetch(`/clientes?username=${username}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                throw new Error(`Error: ${errorData.error}`);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(clientes => {
+                        const clientesContainer = document.getElementById('clientes-container');
+                        clientes.forEach(cliente => {
+                            const clienteElement = document.createElement('div');
+                            clienteElement.classList.add('section');
+                            clienteElement.innerHTML = `
+                                <div class="section-title">Cliente ID: ${cliente.id_cliente}</div>
+                                    <div class="section-content">
+                                        <p><span class="label">Nombre:</span> ${cliente.nombre}</p>
+                                        <p><span class="label">Apellido:</span> ${cliente.apellido}</p>
+                                        <p><span class="label">Correo:</span> ${cliente.contacto}</p>
+                                        <p><span class="label">Dirección:</span> ${cliente.username}</p>
+                                        <div class="button-container">
+                                            <button onclick="editarCliente(${cliente.username})" class="edit-button">Editar</button>
+                                            <button onclick="eliminarCliente(${cliente.username})" class="delete-button">Eliminar</button>
+                                        </div>
+                                    </div>`;
+                            clientesContainer.appendChild(clienteElement);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching clientes:', error);
+                        // Puedes mostrar el error en la página para que el usuario sepa que hubo un problema
+                        const errorContainer = document.getElementById('error-container');
+                        if (errorContainer) {
+                            errorContainer.textContent = error.message;
+                        } else {
+                            alert(error.message);
+                        }
+                    });
+            } else {
+                console.error('Username no proporcionado en la URL');
+            }
+            };
+
+            function editarCliente(username) {
+                // Redirigir a una página de edición con el ID del cliente en la URL
+                window.location.href = `edit_cliente.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            }
+
+            function eliminarCliente(id_cliente) {
+                fetch(`/clientes/${id_cliente}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    // Recargar la lista de clientes después de eliminar
+                    window.location.reload();
+                })
+                .catch(error => console.error('Error eliminando cliente:', error));
+            }
     </script>
 </body>
 </html>

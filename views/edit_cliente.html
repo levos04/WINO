@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edita tus datos personales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="barra-color"></div>
+        <img src="../src/logo Chido.png" alt="Logo" class="logo">
+    </header>
+    <div class="contenedor-principal">
+        <nav class="barra-navegacion">
+            <ul>
+                <li><a id="main-link">Inicio</a></li>
+                <li><a id="perfil">Mi Cuenta</a></li>
+                <li><a id="chats">Contactanos Por Chat</a></li>
+                <li><a id="servicios">Servicios</a></li>
+                <li><a id="configuracion">Configuracion</a></li>
+                <li><a id="permisos">Privacidad y Permisos</a></li>
+                <li><a id="terminos">Términos y Condiciones</a></li>
+
+            </ul>
+        </nav>
+        <main>
+            <h2>Editar Cliente</h2>
+            <form id="edit-form">
+                <input type="hidden" id="id_cliente">
+                <div class="section">
+                    <div class="section-title">Nombre</div>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="section">
+                    <div class="section-title">Apellido</div>
+                    <input type="text" id="apellido" required>
+                </div>
+                <div class="section">
+                    <div class="section-title">Correo</div>
+                    <input type="email" id="correo" required>
+                </div>
+                <button type="submit">Actualizar Cliente</button>
+            </form>
+        </main>
+    </div>
+    <script>
+        window.onload = function() {    
+            const urlParams = new URLSearchParams(window.location.search);
+            const hasGymCode = urlParams.get('hasGymCode');
+            const username = urlParams.get('usuario');
+            const codigo = urlParams.get('codigo_gym');
+            
+            // Configurar los enlaces de navegación
+            const mainLink = document.getElementById('main-link');
+            if (codigo && codigo !== "null") {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            } else {
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            }
+    
+            // Configuración de eventos para los botones de navegación
+
+            document.getElementById('perfil').addEventListener('click', function() {
+                window.location.href = `perfil.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('chats').addEventListener('click', function() {
+                window.location.href = `chats.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('servicios').addEventListener('click', function() {
+                window.location.href = `servicios.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('configuracion').addEventListener('click', function() {
+                window.location.href = `configuracion.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('permisos').addEventListener('click', function() {
+                window.location.href = `permisos.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('terminos').addEventListener('click', function() {
+                window.location.href = `terminos.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id_cliente = urlParams.get('id_cliente');
+
+            fetch(`/clientes/${id_cliente}`)
+                .then(response => response.json())
+                .then(cliente => {
+                    document.getElementById('id_cliente').value = cliente.id_cliente;
+                    document.getElementById('nombre').value = cliente.nombre;
+                    document.getElementById('apellido').value = cliente.apellido;
+                    document.getElementById('correo').value = cliente.contacto;
+                })
+                .catch(error => console.error('Error:', error));
+
+            document.getElementById('edit-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const id_cliente = document.getElementById('id_cliente').value;
+                const nombre = document.getElementById('nombre').value;
+                const apellido = document.getElementById('apellido').value;
+                const correo = document.getElementById('contacto').value;
+
+                fetch(`/clientes/${username}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ nombre, apellido, contacto })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    window.location.href = 'perfil.html'; // Redirige a la página de perfil después de la actualización
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+</body>
+</html>
