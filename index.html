@@ -33,7 +33,7 @@
                 <div class="flex-shrink-0">
                     <!-- Aquí va el logo -->
                     <a href="#home">
-                        <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15 bg">
+                        <img onclick="window.location.href='index.html'" src="./src/logo Chido.png" alt="Logo" class="h-12 w-15 bg">
                     </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
@@ -53,7 +53,7 @@
     <!-- Imagen principal arriba de los contenedores -->
     <div class="relative mt-8">
         <!-- Imagen principal -->
-        <img id="mainImage" src="../src/ejercicio-1388957838.webp" alt="Imagen Principal" class="w-full h-auto rounded-lg shadow-lg">
+        <img id="mainImage" src="./src/ejercicio-1388957838.webp" alt="Imagen Principal" class="w-full h-auto rounded-lg shadow-lg">
         <!-- Overlay con texto -->
         <div class="absolute inset-0 flex items-center justify-center text-center">
             <h2 id="title" class="text-4xl text-white font-extrabold">Work is Never Over.</h2>
@@ -62,12 +62,12 @@
         <!-- Controles para cambiar las imágenes -->
         <div class="absolute top-2 right-2 flex space-x-2">
             <button onclick="prevImage()" class="text-white hover:text-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                <svg xmlns="../src/Principal2" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="./src/Principal2" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
             <button onclick="nextImage()" class="text-white hover:text-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                <svg xmlns="../src/Principal3" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="./src/Principal3" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
@@ -78,7 +78,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         <!-- Contenedor 1 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
-            <img src="../src/usuario.jpg" alt="Imagen 1" class="w-full h-48 object-cover">
+            <img src="./src/usuario.jpg" alt="Imagen 1" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h2 class="text-2xl font-mono text-gray-200 mb-2">Miembro</h2>
                 <p class="text-gray-200">Inicie sesion y empiece a mejorar</p>
@@ -87,7 +87,7 @@
         </div>
         <!-- Contenedor 2 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
-            <img src="../src/entrenador.jpg" alt="Imagen 2" class="w-full h-48 object-cover">
+            <img src="./src/entrenador.jpg" alt="Imagen 2" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h2 class="text-2xl font-mono text-gray-200 mb-2">Entrenador</h2>
                 <p class="text-gray-200">Es entrenador? Inicie aqui!!</p>
@@ -96,7 +96,7 @@
         </div>
         <!-- Contenedor 3 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
-            <img src="../src/admin.jpg" alt="Imagen 3" class="w-full h-48 object-cover">
+            <img src="./src/admin.jpg" alt="Imagen 3" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h2 class="text-2xl font-mono text-gray-200 mb-2">Administrador</h2>
                 <p class="text-gray-200">Administre su propio gym!!</p>
@@ -125,17 +125,17 @@
     // Array de imágenes y textos correspondientes
 const images = [
     {
-        src: "../src/ejercicio-1388957838.webp",
+        src: "./src/ejercicio-1388957838.webp",
         title: "Work is Never Over.",
         subtitle: "Will you give up?"
     },
     {
-        src: "../src/Principal2.webp",
+        src: "./src/Principal2.webp",
         title: "Work is Never Over.",
         subtitle: "Will you give up?"
     },
     {
-        src: "../src/Principal3.jpg",
+        src: "./src/Principal3.jpg",
         title: "Work is Never Over.",
         subtitle: "Will you give up?"
     },
