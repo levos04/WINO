@@ -9,7 +9,7 @@ const port = 13172;
 
 // Configuración de conexión a la base de datos
 let conexion = mysql.createConnection({
-    host: "monorail.proxy.rlwy.net",
+    host: "@monorail.proxy.rlwy.net",
     database: "railway",
     user: "root",
     password: "OOlfSwenfwTJjpHaGLbtKdktRjCFeMzF",
