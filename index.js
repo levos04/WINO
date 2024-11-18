@@ -1,18 +1,19 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-const port = 13172;
+const port = 52332;
 
 // Configuración de conexión a la base de datos
-let conexion = mysql.createConnection({
-    host: "localhost",
-    database: "wino",
-    user: "root",
-    password: "",
+const conexion = mysql.createConnection({
+    host: 'autorack.proxy.rlwy.net', // Host proporcionado por Railway
+    user: 'root',                    // Usuario
+    password: 'lfpvQuaMYUsTaxHrwVGNhOdPHIuijrIt', // Contraseña
+    database: 'railway',             // Base de datos
+    port: 44573                      // Puerto
 });
 
 conexion.connect((err) => {
@@ -20,7 +21,7 @@ conexion.connect((err) => {
         console.error('Error conectando a la base de datos:', err);
         return;
     }
-    console.log('Conexión a la base de datos MySQL establecida.');
+    console.log('Conexión exitosa a la base de datos');
 });
 
 // Configuración de almacenamiento de multer
