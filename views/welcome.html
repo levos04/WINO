@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bienvenido</title>
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación lateral -->
+    <nav id="sidebar" class="bg-Demicolor2 fixed h-full left-0 flex flex-col items-center justify-between py-4 px-2 text-white">
+        <!-- Logo -->
+        <a href="#home" class="mb-4">
+            <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15">
+        </a>
+        <!-- Enlaces de navegación -->
+        <div class="flex flex-col space-y-4">
+            <a id="main-link" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a id="rutinas" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-dumbbell"></i>
+            </a>
+            <div class="relative">
+                <button id="recetas" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-apple-whole"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Botones adicionales a la izquierda del perfil -->
+        <div class="flex flex-col items-center space-y-2">
+            <a id="configuracion" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+            <a id="chats" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-lg">
+                <i class="fas fa-address-book"></i>
+            </a>
+            <a id="perfil">
+                <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <img class="h-8 w-8 rounded-full" src="../src/perfil.webp" alt="Foto de perfil">
+                </button>
+            </a>
+        </div>
+    </nav>
+    <!-- Contenedor principal -->
+    <div class="container mx-auto p-4 py-8 max-w-7xl flex flex-col gap-4">
+        <h1 class="text-3xl font-bold text-center">¡Bienvenido!</h1>
+        <p class="text-center">¿Eres ya parte de un gimnasio?</p>
+        <p class="text-center font-bold">¡Búscalo y únete a su comunidad!</p>
+        <div class="flex justify-center space-x-4">
+            <button id="catalogButton" class="bg-purple-600 hover:text-gray-950 text-white font-bold py-2 px-4 rounded">Ver catálogo de gimnasios</button>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {    
+            const urlParams = new URLSearchParams(window.location.search);
+            const hasGymCode = urlParams.get('hasGymCode');
+            const username = urlParams.get('usuario');
+            const codigo = urlParams.get('codigo_gym');
+            
+            // Configurar los enlaces de navegación
+            const mainLink = document.getElementById('main-link');
+            if (codigo && codigo !== "null") {
+                mainLink.href = `user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            } else {
+                mainLink.href = `welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            }
+    
+            // Configuración de eventos para los botones de navegación
+            document.getElementById('rutinas').addEventListener('click', function() {
+                window.location.href = `training.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('recetas').addEventListener('click', function() {
+                window.location.href = `recetas.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('configuracion').addEventListener('click', function() {
+                window.location.href = `configuracion.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('chats').addEventListener('click', function() {
+                window.location.href = `chats.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+    
+            document.getElementById('perfil').addEventListener('click', function() {
+                window.location.href = `perfil.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+
+            document.getElementById('catalogButton').addEventListener('click', function() {
+                window.location.href = `gymCatalogo.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${codigo}`;
+            });
+        };
+    </script>    
+</body>
+</html>
