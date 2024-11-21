@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Inicio</title>
-    <link href="./output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 <body class="bg-Demicolor">
 
@@ -33,14 +28,14 @@
                 <div class="flex-shrink-0">
                     <!-- Aquí va el logo -->
                     <a href="#home">
-                        <img onclick="window.location.href='index.html'" src="../src/logo Chido.png" alt="Logo" class="h-12 w-15 bg">
+                        <img onclick="window.location.href='index.html'" src="/src/logo Chido.png" alt="Logo" class="h-12 w-15 bg">
                     </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         <a onclick="window.location.href='index.html'" href="#home" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="terminosoffline.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Terminos y Condiciones</a>
-                        <a href="Chatsoffline.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contactanos</a>
+                        <a href="./views/terminosoffline.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Terminos y Condiciones</a>
+                        <a href="./views/Chatsoffline.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contactanos</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +48,7 @@
     <!-- Imagen principal arriba de los contenedores -->
     <div class="relative mt-8">
         <!-- Imagen principal -->
-        <img id="mainImage" src="../src/ejercicio-1388957838.webp" alt="Imagen Principal" class="w-full h-auto rounded-lg shadow-lg">
+        <img id="mainImage" src="/src/ejercicio-1388957838.webp" alt="Imagen Principal" class="w-full h-auto rounded-lg shadow-lg">
         <!-- Overlay con texto -->
         <div class="absolute inset-0 flex items-center justify-center text-center">
             <h2 id="title" class="text-4xl text-white font-extrabold">Work is Never Over.</h2>
@@ -62,12 +57,12 @@
         <!-- Controles para cambiar las imágenes -->
         <div class="absolute top-2 right-2 flex space-x-2">
             <button onclick="prevImage()" class="text-white hover:text-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                <svg xmlns="../src/Principal2" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="./src/Principal2" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
             <button onclick="nextImage()" class="text-white hover:text-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                <svg xmlns="../src/Principal3" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="./src/Principal3" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
@@ -78,29 +73,29 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         <!-- Contenedor 1 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
-            <img src="../src/usuario.jpg" alt="Imagen 1" class="w-full h-48 object-cover">
+            <img src="/src/usuario.jpg" alt="Imagen 1" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h2 class="text-2xl font-mono text-gray-200 mb-2">Miembro</h2>
                 <p class="text-gray-200">Inicie sesion y empiece a mejorar</p>
-                <button onclick="window.location.href='miembroInicio.html'" class="bg-gray-800 hover:bg-gray-600 text-white font-mono py-2 px-4 rounded">Login</button>
+                <button onclick="window.location.href='/miembroInicio.html'" class="bg-gray-800 hover:bg-gray-600 text-white font-mono py-2 px-4 rounded">Login</button>
             </div>
         </div>
         <!-- Contenedor 2 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
-            <img src="../src/entrenador.jpg" alt="Imagen 2" class="w-full h-48 object-cover">
+            <img src="/src/entrenador.jpg" alt="Imagen 2" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h2 class="text-2xl font-mono text-gray-200 mb-2">Entrenador</h2>
                 <p class="text-gray-200">Es entrenador? Inicie aqui!!</p>
-                <button onclick="window.location.href='entrenadorInicio.html'" class="bg-gray-800 hover:bg-gray-600 text-white font-mono py-2 px-4 rounded">Login</button>                
+                <button onclick="window.location.href='/entrenadorInicio.html'" class="bg-gray-800 hover:bg-gray-600 text-white font-mono py-2 px-4 rounded">Login</button>                
             </div>
         </div>
         <!-- Contenedor 3 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
-            <img src="../src/admin.jpg" alt="Imagen 3" class="w-full h-48 object-cover">
+            <img src="/src/admin.jpg" alt="Imagen 3" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h2 class="text-2xl font-mono text-gray-200 mb-2">Administrador</h2>
                 <p class="text-gray-200">Administre su propio gym!!</p>
-                <button onclick="window.location.href='Pregunta.html'" class="bg-gray-800 hover:bg-gray-600 text-white font-mono py-2 px-4 rounded">Login</button>
+                <button onclick="window.location.href='/Pregunta.html'" class="bg-gray-800 hover:bg-gray-600 text-white font-mono py-2 px-4 rounded">Login</button>
             </div>
         </div>
     </div>
@@ -125,17 +120,17 @@
     // Array de imágenes y textos correspondientes
 const images = [
     {
-        src: "../src/ejercicio-1388957838.webp",
+        src: "/src/ejercicio-1388957838.webp",
         title: "Work is Never Over.",
         subtitle: "Will you give up?"
     },
     {
-        src: "../src/Principal2.webp",
+        src: "/src/Principal2.webp",
         title: "Work is Never Over.",
         subtitle: "Will you give up?"
     },
     {
-        src: "../src/Principal3.jpg",
+        src: "/src/Principal3.jpg",
         title: "Work is Never Over.",
         subtitle: "Will you give up?"
     },

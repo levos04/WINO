@@ -55,28 +55,102 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'views')));
-app.use(express.static(path.join(__dirname, 'Maquetado 2 unidad')));
-app.use('/src', express.static(path.join(__dirname, 'src')));
+// Servir archivos estáticos (CSS, JS, imágenes)
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Rutas para servir archivos HTML
+// Rutas para las vistas (HTML)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-app.get('/miembroRegistro', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'miembroRegistro.html'));
+app.get('/adminExito.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'adminExito.html'));
 });
 
-app.get('/entrenadorRegistro', (req, res) => {
+app.get('/adminFallo.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'adminFallo.html'));
+});
+
+app.get('/adminInicio.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'adminInicio.html'));
+});
+
+app.get('/adminRegistro.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'adminRegistro.html'));
+});
+
+app.get('/entrenadorExito.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'entrenadorExito.html'));
+});
+
+app.get('/entrenadorFallo.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'entrenadorFallo.html'));
+});
+
+app.get('/entrenadorInicio.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'entrenadorInicio.html'));
+});
+
+app.get('/entrenadorRegistro.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'entrenadorRegistro.html'));
 });
 
-app.get('/gymRegistro', (req, res) => {
+app.get('/gymCatalogo.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'gymCatalogo.html'));
+});
+
+app.get('/gymExito.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'gymExito.html'));
+});
+
+app.get('/gymFallo.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'gymFallo.html'));
+});
+
+app.get('/gymRegistro.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'gymRegistro.html'));
 });
 
+app.get('/index.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+app.get('/miembroExito.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'miembroExito.html'));
+});
+
+app.get('/miembroFallo.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'miembroFallo.html'));
+});
+
+app.get('/miembroInicio.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'miembroInicio.html'));
+});
+
+app.get('/miembroRegistro.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'miembroRegistro.html'));
+});
+
+app.get('/Pregunta.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'Pregunta.html'));
+});
+
+app.get('/recetas.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'recetas.html'));
+});
+
+
+app.get('/training.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'training.html'));
+});
+
+app.get('/user.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'user.html'));
+});
+
+app.get('/welcome.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'welcome.html'));
+});
 // Rutas para manejar formularios
 app.post('/validarMiembro', (req, res) => {
     const datos = req.body;
