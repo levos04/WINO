@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Inicio</title>
-    <link href="/css/output.css" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body class="bg-Demicolor">
 
@@ -57,12 +62,12 @@
         <!-- Controles para cambiar las imágenes -->
         <div class="absolute top-2 right-2 flex space-x-2">
             <button onclick="prevImage()" class="text-white hover:text-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                <svg xmlns="./src/Principal2" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="../src/Principal2" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
             <button onclick="nextImage()" class="text-white hover:text-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                <svg xmlns="./src/Principal3" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="../src/Principal3" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
@@ -71,7 +76,7 @@
 
     <!-- Contenedores de información con imágenes -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-        <!-- Contenedor 1 -->
+        <!-- Cohhhhhhhhntenedor 1 -->
         <div class="bg-Demicolor2 rounded-lg shadow-lg overflow-hidden">
             <img src="/src/usuario.jpg" alt="Imagen 1" class="w-full h-48 object-cover">
             <div class="p-6">
@@ -167,7 +172,6 @@ showImage(currentIndex);
 
 // Iniciar cambio automático de imágenes al cargar la página
 autoChangeImage();
-
 </script>
 
 </body>
