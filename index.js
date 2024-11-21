@@ -1,8 +1,11 @@
 const express = require('express');
+const multer = require('multer');
 const path = require('path');
-require('dotenv').config();
-
+const mysql = require("mysql2");
+const bodyParser = require('body-parser');
+const fs = require('fs');
 const app = express();
+const port = 52332;
 
 // Middlewares
 app.use(express.json());
@@ -47,7 +50,7 @@ app.get('/entrenadorInicio.html', (req, res) => {
 });
 
 app.get('/entrenadorRegistro.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'entremndorRegistro.html'));
+    res.sendFile(path.join(__dirname, 'views', 'entrenadorRegistro.html'));
 });
 
 app.get('/entrenadorRegistro.html', (req, res) => {
@@ -110,7 +113,6 @@ app.get('/welcome.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'welcome.html'));
 });
 
-// Rutas para manejar formularios
 app.post('/validarMiembro', (req, res) => {
     const datos = req.body;
 
@@ -215,25 +217,121 @@ app.post('/validarAdmin', (req, res) => {
     });
 });
 
-app.get('/Pregunta.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'Pregunta.html'));
+app.post('/loginMiembro', (req, res) => {
+    const datos = req.body;
+
+    let username = datos.username;
+    let password = datos.password;
+
+    let query = 'SELECT * FROM clientes WHERE username = ? AND password = ?';
+
+    conexion.query(query, [username, password], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error);
+            return res.redirect('/miembroInicio.html?error=error_en_bd');
+        }
+
+        if (results.length === 0) {
+            // Si no se encontraron coincidencias
+            return res.redirect('/miembroInicio.html?error=datos_no_registrados');
+        }
+
+        // Si la ejecución fue exitosa
+        const cliente = results[0];
+        const hasGymCode = cliente.codigo_gym ? 'yes' : 'no';
+
+        if (cliente.codigo_gym) {
+            // Redirigir al usuario con el código de gimnasio
+            return res.redirect(`/user.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${cliente.codigo_gym}`);
+        } else {
+            // Redirigir al usuario sin código de gimnasio
+            return res.redirect(`/welcome.html?usuario=${username}&hasGymCode=${hasGymCode}&codigo_gym=${cliente.codigo_gym}`);
+        }
+    });
 });
 
-app.get('/training.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'training.html'));
+app.post('/loginEntrenador', (req, res) => {
+    const datos = req.body;
+
+    let username = datos.username;
+    let password = datos.password;
+
+    let query = 'SELECT * FROM entrenadores WHERE username = ? AND password = ?';
+
+    conexion.query(query, [username, password], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error);
+            return res.redirect('/entrenadorInicio.html?error=error_en_bd');
+        }
+
+        if (results.length === 0) {
+            // Si no se encontraron coincidencias
+            return res.redirect('/entrenadorInicio.html?error=datos_no_registrados');
+        }
+
+        // Si la ejecución fue exitosa
+        return res.redirect(`/user.html?usuario=${username}`);
+    });
 });
 
-app.get('/welcome.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'welcome.html'));
+// Ruta para obtener gimnasios con filtro
+app.get('/gimnasios', (req, res) => {
+    let query = 'SELECT * FROM gimnasios';
+    conexion.query(query, (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error);
+            res.status(500).send('Error en la base de datos');
+            return;
+        }
+        res.json(results); // Enviar los resultados como JSON
+    });
 });
 
-// Manejo de errores
-app.use((req, res) => {
-    res.status(404).json({ error: 'Endpoint no encontrado' });
+app.get('/clientes', (req, res) => {
+    const username = req.query.username; // Obtener el valor de username de la query string
+    if (!username) {
+        res.status(400).send('Username es requerido');
+        return;
+    }
+
+    const query = 'SELECT * FROM clientes WHERE username = ?';
+    conexion.query(query, [username], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error); // Log the error to the console
+            res.status(500).send('Error en la base de datos');
+            return;
+        }
+        res.json(results); // Enviar los resultados como JSON
+    });
 });
 
-// Puerto
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`API corriendo en el puerto ${PORT}`);
+
+// Ruta para registrar cliente en un gimnasio
+app.post('/registrarCliente', (req, res) => {
+    const { codigo_gym, usuario } = req.body;
+
+    // Verifica si ambos campos están presentes
+    if (!codigo_gym || !usuario) {
+        return res.status(400).json({ error: 'Datos incompletos' });
+    }
+
+    const query = 'UPDATE clientes SET codigo_gym = ? WHERE username = ?';
+    conexion.query(query, [codigo_gym, usuario], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta SQL:', error);
+            return res.status(500).json({ error: 'Error en la base de datos' });
+        }
+
+        // Verifica si se actualizó alguna fila
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        res.status(200).json({ message: 'Registro actualizado correctamente' });
+    });
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor iniciado en http://localhost:${port}`);
 });
