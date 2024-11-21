@@ -8,11 +8,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'views')));
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
 // Rutas para servir archivos HTML
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
