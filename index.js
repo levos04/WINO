@@ -7,6 +7,47 @@ const fs = require('fs');
 const app = express();
 const port = 52332;
 
+const conexion = mysql.createConnection({
+    host: 'autorack.proxy.rlwy.net', // Host proporcionado por Railway
+    user: 'root',                    // Usuario
+    password: 'lfpvQuaMYUsTaxHrwVGNhOdPHIuijrIt', // Contraseña
+    database: 'railway',             // Base de datos
+    port: 44573                      // Puerto
+});
+
+conexion.connect((err) => {
+    if (err) {
+        console.error('Error conectando a la base de datos:', err);
+        return;
+    }
+    console.log('Conexión exitosa a la base de datos');
+});
+
+// Configuración de almacenamiento de multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // Carpeta donde se guardarán los archivos
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Middleware para servir archivos estáticos
+app.use('/uploads', express.static('uploads'));
+
+// Ruta para manejar el formulario de carga de archivos
+app.post('/upload', upload.single('Imagen'), (req, res) => {
+    try {
+        res.status(200).send('Archivo subido correctamente: ' + req.file.path);
+    } catch (error) {
+        res.status(400).send('Error al subir el archivo.');
+    }
+});
+
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -156,40 +197,6 @@ app.post('/validarEntrenador', (req, res) => {
         }
 
         return res.redirect('/entrenadorExito.html');
-    });
-});
-
-app.post('/validarGym', upload.single('Imagen'), (req, res) => {
-    const datos = req.body;
-    const imagenFile = req.file; // Captura el archivo de imagen
-
-    // Extraer los datos del formulario
-    let pais = datos.Pais;
-    let estado = datos.Estado;
-    let ciudad = datos.Ciudad;
-    let direccion = datos.Direccion;
-    let cp = datos.CodigoPostal;
-    let rfc = datos.RFC;
-    let nombre = datos.Nombre;
-    let imagenPath = imagenFile ? path.join('/uploads/', imagenFile.filename) : null; // Ruta donde se guardó la imagen en tu servidor
-
-    // Llamada al procedimiento almacenado con la ruta de la imagen
-    let registrar = "CALL agregar_gym(?, ?, ?, ?, ?, ?, ?, ?)";
-
-    conexion.query(registrar, [pais, estado, ciudad, direccion, cp, rfc, nombre, imagenPath], (error, results) => {
-        if (error) {
-            console.error('Error ejecutando el procedimiento almacenado:', error);
-            return res.redirect('/gymFallo.html?error=general');
-        }
-
-        // Si la ejecución fue exitosa, verificar el mensaje devuelto por el procedimiento almacenado
-        if (results && results.length > 0 && results[0][0] && results[0][0].codigo_gym) {
-            let codigoGym = results[0][0].codigo_gym;
-            return res.redirect(`/gymExito.html?codigo=${codigoGym}`);
-        } else {
-            console.error('Error: No se recibió un código válido del procedimiento almacenado.');
-            return res.redirect('/gymFallo.html?error=nocode');
-        }
     });
 });
 
